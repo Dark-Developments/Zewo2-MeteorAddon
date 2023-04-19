@@ -5,9 +5,9 @@
 <h1 align="center">Kapuncino Client</h1>
 
 <div style="display: grid; place-items: center;">
-    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Nxyi/Coffee-Client-1.19.4?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Coffee-Client-1.19.4?color=black&label=Developers">
-<img alt="GitHub contributors" src="https://img.shields.io/github/v/release/Nxyi/Coffee-Client-1.19.4?display_name=tag&include_prereleases&color=black">
-    <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Nxyi/Coffee-Client-1.19.4/total?color=black">
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Nxyi/Kapuncino-Meteor?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Kapuncino-Meteor?color=black&label=Developers">
+<img alt="GitHub contributors" src="https://img.shields.io/github/v/release/Nxyi/Kapuncino-Meteor?display_name=tag&include_prereleases&color=black">
+    <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Nxyi/Kapuncino-Meteor/total?color=black">
 
 </div>
 
