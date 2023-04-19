@@ -1,8 +1,8 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/Nxyi/Kapuncino-Client/master/src/main/resources/assets/coffee/icon.png" width="20%"/>
+<img src="https://raw.githubusercontent.com/Nxyi/Kapuncino-Meteor/master/src/main/resources/assets/coffee/icon.png" width="20%"/>
 </p>
 
-<h1 align="center">Kapuncino Client</h1>
+<h1 align="center">Kapuncino Meteor</h1>
 
 <div style="display: grid; place-items: center;">
     <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Nxyi/Kapuncino-Meteor?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Kapuncino-Meteor?color=black&label=Developers">
