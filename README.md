@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/Nxyi/Kapuncino-Client/master/src/main/resources/assets/coffee/icon.png" width="20%"/>
+<img src="https://raw.githubusercontent.com/Dark-Developments/Popbobxd-Addon/blob/master/src/main/resources/assets/template/icon.png?raw=true" width="20%"/>
 </p>
 
 <h1 align="center">Popbobxd Addon</h1>
