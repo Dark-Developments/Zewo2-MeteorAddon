@@ -16,8 +16,8 @@ import org.slf4j.Logger;
 
 public class Addon extends MeteorAddon {
     public static final Logger LOG = LogUtils.getLogger();
-    public static final Category CATEGORY = new Category("Kapuncino");
-    public static final HudGroup HUD_GROUP = new HudGroup("Kapuncino");
+    public static final Category CATEGORY = new Category("Popbobxd");
+    public static final HudGroup HUD_GROUP = new HudGroup("Popbobxd");
 
     @Override
     public void onInitialize() {
@@ -42,6 +42,12 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Magnet());
         Modules.get().add(new NoSwing());
         Modules.get().add(new chatfilterbypass());
+        Modules.get().add(new Airstrike());
+        Modules.get().add(new Groupmessage());
+        Modules.get().add(new RainbowArmor());
+        Modules.get().add(new PenisESP());
+        Modules.get().add(new NecrophiliaPOV());
+
 
         // Commands
         Commands.get().add(new CheckCMD());

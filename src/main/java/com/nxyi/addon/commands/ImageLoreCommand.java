@@ -30,7 +30,7 @@ public class ImageLoreCommand extends Command {
     private BufferedImage imageToBuild;
 
     public ImageLoreCommand() {
-        super("image-lore", "Adds an image to an item's lore.");
+        super("image-lore", "Adds an image to an item's lore. | github.com/GriefUnion");
     }
 
     @Override

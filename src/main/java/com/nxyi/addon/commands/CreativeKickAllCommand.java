@@ -22,7 +22,7 @@ public class CreativeKickAllCommand extends Command {
     private static final SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("You must be in creative mode to use this."));
 
     public CreativeKickAllCommand() {
-        super("creative-kick-all", "Attempts to kick everyone in your render distance.");
+        super("creative-kick-all", "Attempts to kick everyone in your render distance. | github.com/GriefUnion");
     }
 
     @Override

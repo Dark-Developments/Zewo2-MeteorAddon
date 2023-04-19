@@ -24,7 +24,7 @@ public class CreativeBanCommand extends Command {
     private static final SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("You must be in creative mode to use this."));
 
     public CreativeBanCommand() {
-        super("creative-ban", "Attempts to ban a player with an armor stand.");
+        super("creative-ban", "Attempts to ban a player with an armor stand. | github.com/GriefUnion");
     }
 
     @Override

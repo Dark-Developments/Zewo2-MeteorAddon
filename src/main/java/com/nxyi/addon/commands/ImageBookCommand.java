@@ -30,7 +30,7 @@ public class ImageBookCommand extends Command {
     private BufferedImage imageToBuild;
 
     public ImageBookCommand() {
-        super("image-book", "Creates a book with an image.");
+        super("image-book", "Creates a book with an image. | github.com/GriefUnion");
     }
 
     @Override

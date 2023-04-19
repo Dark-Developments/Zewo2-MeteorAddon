@@ -39,6 +39,7 @@ public class chatfilterbypass extends Module {
             }
 
             case RTLO -> {
+                message = message.replaceAll("<", ">").replaceAll(">", "<");
                 message = new StringBuilder(message).reverse().toString();
                 message = "\u202E" + message;
 
