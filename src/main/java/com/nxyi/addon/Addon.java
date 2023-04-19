@@ -47,6 +47,8 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new RainbowArmor());
         Modules.get().add(new PenisESP());
         Modules.get().add(new NecrophiliaPOV());
+        Modules.get().add(new EntityFly());
+        Modules.get().add(new FakeAttack());
 
 
         // Commands

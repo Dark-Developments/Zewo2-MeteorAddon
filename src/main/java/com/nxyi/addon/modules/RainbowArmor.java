@@ -72,7 +72,7 @@ public class RainbowArmor extends Module {
     private int ticks;
 
     public RainbowArmor() {
-        super(Addon.CATEGORY, "rainbow-armor", "Gives you rainbow leather armor.");
+        super(Addon.CATEGORY, "rainbow-armor", "Gives you rainbow leather armor. | github.com/GriefUnion");
     }
 
     @Override
