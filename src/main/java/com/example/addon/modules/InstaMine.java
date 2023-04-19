@@ -6,7 +6,7 @@
 package com.example.addon.modules;
 
 import com.example.addon.Addon;
-import com.example.addon.mixin.Interface.IClientPlayerInteractionManagerMixin;
+import com.example.addon.mixin.Interface.INClientPlayerInteractionManagerMixin;
 import meteordevelopment.meteorclient.events.entity.player.StartBreakingBlockEvent;
 import meteordevelopment.meteorclient.events.render.Render3DEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
@@ -94,7 +94,7 @@ public class InstaMine extends Module {
     @EventHandler
     private void onTick(TickEvent.Pre event) {
         if (Objects.requireNonNull(mc.interactionManager).isBreakingBlock()) {
-            last = ((IClientPlayerInteractionManagerMixin) mc.interactionManager).getCurrentBreakingPos();
+            last = ((INClientPlayerInteractionManagerMixin) mc.interactionManager).getCurrentBreakingPos();
         }
         if (last.getY() == -128) return;
         mc.getNetworkHandler().sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.STOP_DESTROY_BLOCK, last, direction));

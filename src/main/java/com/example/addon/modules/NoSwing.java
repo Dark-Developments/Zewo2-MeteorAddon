@@ -16,6 +16,7 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
 import net.minecraft.network.packet.s2c.play.EntityAnimationS2CPacket;
+import net.minecraft.util.profiling.jfr.event.PacketSentEvent;
 
 public class NoSwing extends Module {
 
@@ -24,7 +25,7 @@ public class NoSwing extends Module {
     }
 
     @EventHandler
-    private void onSendPacket(PacketEvent.Sent event) {
+    private void onSendPacket(PacketEvent.Send event) {
         if (event.packet instanceof HandSwingC2SPacket) {
             event.cancel();
         }

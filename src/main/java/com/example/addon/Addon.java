@@ -39,6 +39,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new PacketLogger());
         Modules.get().add(new Magnet());
         Modules.get().add(new NoSwing());
+        Modules.get().add(new chatfilterbypass());
 
         // Commands
         Commands.get().add(new CheckCMD());

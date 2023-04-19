@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(ClientPlayerInteractionManager.class)
-public interface IClientPlayerInteractionManagerMixin {
+public interface INClientPlayerInteractionManagerMixin {
 
     @Accessor("currentBreakingPos")
     BlockPos getCurrentBreakingPos();
