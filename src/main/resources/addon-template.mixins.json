@@ -3,7 +3,8 @@
   "package": "com.example.addon.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "ChatScreenMixin"
+    "ChatScreenMixin",
+    "Interface.IClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
