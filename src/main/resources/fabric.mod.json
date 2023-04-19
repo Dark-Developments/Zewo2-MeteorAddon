@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
+  "id": "kapuncino",
   "version": "${version}",
   "name": "Kapuncino",
   "description": "An addon template for the Meteor addons.",
@@ -14,14 +14,14 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "com.example.addon.Addon"
+      "com.nxyi.addon.Addon"
     ]
   },
   "mixins": [
     "addon-template.mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "225,25,25"
+    "meteor-client:color": "99, 99, 99"
   },
   "depends": {
     "java": ">=17",
