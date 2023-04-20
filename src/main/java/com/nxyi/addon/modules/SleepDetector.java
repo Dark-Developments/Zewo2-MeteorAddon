@@ -2,7 +2,6 @@ package com.nxyi.addon.modules;
 
 import com.nxyi.addon.Addon;
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
-import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
@@ -18,7 +17,7 @@ public class SleepDetector extends Module {
     private void onsleep(PacketEvent.Receive event){
         if (event.packet instanceof GameMessageS2CPacket packet){
             if (packet.content().contains(Text.of("sleep.players_sleeping"))){
-                ChatUtils.info("Someone is sleeping");
+                info("Someone is sleeping");
             }
         }
     }
