@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "popbobxd",
   "version": "${version}",
-  "name": "Popbobxd",
+  "name": "PopbobXD",
   "description": "An addon template for the Meteor addons.",
   "authors": [
     "Nxyi#7584"
@@ -21,7 +21,7 @@
     "addon-template.mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "99, 99, 99"
+    "meteor-client:color": "99,99,99"
   },
   "depends": {
     "java": ">=17",

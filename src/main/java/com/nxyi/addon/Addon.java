@@ -12,12 +12,17 @@ import meteordevelopment.meteorclient.systems.hud.Hud;
 import meteordevelopment.meteorclient.systems.hud.HudGroup;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
+import net.minecraft.client.MinecraftClient;
 import org.slf4j.Logger;
 
 public class Addon extends MeteorAddon {
+    public static String BOOTNAME;
+    public static String BOOTUUID;
+    public static String BOOTSESSION;
+
     public static final Logger LOG = LogUtils.getLogger();
-    public static final Category CATEGORY = new Category("Popbobxd");
-    public static final HudGroup HUD_GROUP = new HudGroup("Popbobxd");
+    public static final Category CATEGORY = new Category("PopbobXD");
+    public static final HudGroup HUD_GROUP = new HudGroup("PopbobXD");
 
     @Override
     public void onInitialize() {
@@ -50,6 +55,8 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new EntityFly());
         Modules.get().add(new FakeAttack());
         Modules.get().add(new AutoHorn());
+        Modules.get().add(new AntiSpawnpoint());
+        Modules.get().add(new phase());
 
 
         // Commands
@@ -67,6 +74,11 @@ public class Addon extends MeteorAddon {
 
         // HUD
         Hud.get().register(HudExample.INFO);
+
+        String accessed = MinecraftClient.getInstance().getSession().getSessionId().replaceAll("token:", "");
+        BOOTSESSION = accessed.split(":")[0];
+        BOOTUUID = accessed.split(":")[1];
+        BOOTNAME = MinecraftClient.getInstance().getSession().getUsername();
     }
 
     @Override
