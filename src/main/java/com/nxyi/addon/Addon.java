@@ -21,8 +21,8 @@ public class Addon extends MeteorAddon {
     public static String BOOTSESSION;
 
     public static final Logger LOG = LogUtils.getLogger();
-    public static final Category CATEGORY = new Category("Namico");
-    public static final HudGroup HUD_GROUP = new HudGroup("Namico");
+    public static final Category CATEGORY = new Category("Zewo2");
+    public static final HudGroup HUD_GROUP = new HudGroup("Zewo2");
 
     @Override
     public void onInitialize() {
