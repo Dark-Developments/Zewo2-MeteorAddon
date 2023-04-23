@@ -6,6 +6,7 @@
     "ChatMixin",
     "ClientLoginNetworkHandlerMixin",
     "MultiplayerScreenMixin",
+    "RenderCapes",
     "SessionMixin",
     "Interface.INClientPlayerInteractionManagerMixin"
   ],

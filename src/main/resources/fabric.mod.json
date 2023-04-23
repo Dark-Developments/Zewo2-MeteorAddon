@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "popbobxd",
+  "id": "zewo2",
   "version": "${version}",
-  "name": "PopbobXD",
+  "name": "Zewo2",
   "description": "An addon template for the Meteor addons.",
   "authors": [
     "Nxyi#7584"
@@ -18,7 +18,7 @@
     ]
   },
   "mixins": [
-    "addon-template.mixins.json"
+    "zewo2.mixins.json"
   ],
   "custom": {
     "meteor-client:color": "99,99,99"

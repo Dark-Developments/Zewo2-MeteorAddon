@@ -1,5 +1,6 @@
 package com.nxyi.addon.mixin;
 
+import com.nxyi.addon.Addon;
 import com.nxyi.addon.gui.screens.accounts;
 import meteordevelopment.meteorclient.gui.GuiThemes;
 import net.minecraft.client.gui.screen.Screen;
@@ -19,7 +20,7 @@ public abstract class MultiplayerScreenMixin extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void onInit(CallbackInfo info) {
-        addDrawableChild(ButtonWidget.builder(Text.of("PopbobXD"), button -> {
+        addDrawableChild(ButtonWidget.builder(Text.of(Addon.CATEGORY.toString()), button -> {
                 client.setScreen(new accounts(GuiThemes.get(), (MultiplayerScreen) (Object) this));
             })
             .position(this.width - 75 - 3 - 150 - 4, 3)

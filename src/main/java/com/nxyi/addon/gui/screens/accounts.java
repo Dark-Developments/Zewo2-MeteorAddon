@@ -1,5 +1,6 @@
 package com.nxyi.addon.gui.screens;
 
+import com.nxyi.addon.Addon;
 import meteordevelopment.meteorclient.gui.GuiTheme;
 import meteordevelopment.meteorclient.gui.WindowScreen;
 import meteordevelopment.meteorclient.gui.widgets.containers.WContainer;
@@ -9,12 +10,13 @@ import meteordevelopment.meteorclient.systems.accounts.Accounts;
 import meteordevelopment.meteorclient.utils.misc.NbtUtils;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 
+import static meteordevelopment.meteorclient.MeteorClient.ADDON;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class accounts extends WindowScreen {
     private final MultiplayerScreen multiplayerScreen;
     public accounts(GuiTheme theme, MultiplayerScreen multiplayerScreen) {
-        super(theme, "PopbobXD");
+        super(theme, Addon.CATEGORY.toString());
         this.parent = multiplayerScreen;
         this.multiplayerScreen = multiplayerScreen;
     }
