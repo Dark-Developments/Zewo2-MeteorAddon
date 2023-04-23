@@ -18,7 +18,7 @@
     ]
   },
   "mixins": [
-    "addon-template.mixins.json"
+    "zewo2.mixins.json"
   ],
   "custom": {
     "meteor-client:color": "99,99,99"
