@@ -48,4 +48,4 @@ Fabric Utility Mod.
 
 ## Disclaimer
 
-For educational purposes only. Use at your own risk.
+For educational purposes only. Use at your own risk. 
