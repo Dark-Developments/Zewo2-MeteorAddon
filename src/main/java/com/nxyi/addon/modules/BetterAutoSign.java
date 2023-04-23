@@ -22,12 +22,12 @@ public class BetterAutoSign extends Module {
 
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
 
-    private final Setting<String> line1 = sgGeneral.add(new StringSetting.Builder().name("line1").description("line1").defaultValue("").build());
+    private final Setting<String> line1 = sgGeneral.add(new StringSetting.Builder().name("line 1").description("line 1").defaultValue("").build());
 
-    private final Setting<String> line2 = sgGeneral.add(new StringSetting.Builder().name("line2").description("line2").defaultValue("").build());
-    private final Setting<String> line3 = sgGeneral.add(new StringSetting.Builder().name("line3").description("line3").defaultValue("").build());
+    private final Setting<String> line2 = sgGeneral.add(new StringSetting.Builder().name("line 2").description("line 2").defaultValue("").build());
+    private final Setting<String> line3 = sgGeneral.add(new StringSetting.Builder().name("line 3").description("line 3").defaultValue("").build());
 
-    private final Setting<String> line4 = sgGeneral.add(new StringSetting.Builder().name("line4").description("line4").defaultValue("").build());
+    private final Setting<String> line4 = sgGeneral.add(new StringSetting.Builder().name("line 4").description("line 4").defaultValue("").build());
 
     public BetterAutoSign() {
         super(Addon.CATEGORY, "Auto-Sign+", "Auto Sign");
