@@ -41,6 +41,7 @@ public class AntiSpawnpoint extends Module {
 
             if (fakeuse.get()){
                 mc.player.networkHandler.sendPacket(new HandSwingC2SPacket(Hand.MAIN_HAND));
+                mc.player.swingHand(Hand.MAIN_HAND);
             }
 
             if (mc.world.getDimension().bedWorks() && mc.world.getBlockState(blockpos).getBlock() instanceof BedBlock) {
