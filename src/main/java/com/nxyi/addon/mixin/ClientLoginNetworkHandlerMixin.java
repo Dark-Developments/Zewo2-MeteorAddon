@@ -40,7 +40,7 @@ public abstract class ClientLoginNetworkHandlerMixin {
     @Overwrite
     private @Nullable Text joinServerSession(String serverId) {
         try {
-            if (!SetSession.originalSession && SetSession.accessToken.length() <= 43){
+            if (!SetSession.originalSession && SetSession.accessToken.length() == 43){
                 joinServer(SetSession.accessToken, client.getSession().getUuidOrNull(), serverId);
             }
 
