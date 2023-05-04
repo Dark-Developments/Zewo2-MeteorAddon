@@ -15,6 +15,7 @@
   },
   "mixins": [
     "ClientNameMixin",
-    "DiscordPresenceMixin"
+    "DiscordPresenceMixin",
+    "EntityMixin"
   ]
 }

@@ -15,13 +15,7 @@ public class SpamBypass extends Module {
 
     private final Setting<String> message = sgGeneral.add(new StringSetting.Builder().name("Message").description("Message To Spam").defaultValue("Jinx").build());
 
-    private final Setting<Bypass> bypass = sgGeneral.add(new EnumSetting.Builder<Bypass>()
-        .name("bypass")
-        .description("bypass")
-        .defaultValue(Bypass.Command)
-        .build()
-    );
-    private final Setting<String> bc = sgGeneral.add(new StringSetting.Builder().name("Command").description("Bypass Command").defaultValue("/skill").visible(() -> bypass.get().equals(Bypass.Command)).build());
+    private final Setting<String> bc = sgGeneral.add(new StringSetting.Builder().name("Command").description("Bypass Command").defaultValue("/skill").build());
 
     private final Setting<Modes> mode = sgGeneral.add(new EnumSetting.Builder<Modes>()
         .name("mode")
@@ -48,6 +42,23 @@ public class SpamBypass extends Module {
         .build()
     );
 
+    private final Setting<Boolean> rndString = sgGeneral.add(new BoolSetting.Builder()
+        .name("rndString")
+        .description("add random string to the end.")
+        .defaultValue(true)
+        .build()
+    );
+    private final Setting<Integer> length = sgGeneral.add(new IntSetting.Builder()
+        .name("length")
+        .description("The length of the random string.")
+        .defaultValue(4)
+        .sliderRange(1, 10)
+        .visible(() -> rndString.get())
+        .build()
+    );
+
+
+
 
     private int timer;
 
@@ -66,7 +77,7 @@ public class SpamBypass extends Module {
 
             case DelayPerTick -> {
                 if (timer <= 0) {
-                    mc.player.networkHandler.sendChatMessage(((bypass.get() == Bypass.Command) ? bc.get() : "") + " " + message + (((bypass.get() == Bypass.RndString) ? " " + JinxUtils.randomString(4) : "")));
+                    mc.player.networkHandler.sendChatMessage(bc.get() + " " + message + (((rndString.get()) ? " " + JinxUtils.randomString(length.get()) : "")));
                     timer = delay.get();
                 } else {
                     timer--;
@@ -75,7 +86,7 @@ public class SpamBypass extends Module {
 
             case AmountPerTick -> {
                 for (int i = 0; i < amount.get(); i++) {
-                    mc.player.networkHandler.sendChatMessage(((bypass.get() == Bypass.Command) ? bc.get() : "") + " " + message + (((bypass.get() == Bypass.RndString) ? " " + JinxUtils.randomString(4) : "")));
+                    mc.player.networkHandler.sendChatMessage(bc.get() + " " + message + (((rndString.get()) ? " " + JinxUtils.randomString(length.get()) : "")));
                 }
             }
         }
@@ -84,10 +95,5 @@ public class SpamBypass extends Module {
     public enum Modes{
         DelayPerTick,
         AmountPerTick
-    }
-
-    public enum Bypass{
-        Command,
-        RndString
     }
 }

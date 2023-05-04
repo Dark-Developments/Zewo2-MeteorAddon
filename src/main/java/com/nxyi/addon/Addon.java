@@ -57,6 +57,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new AutoHorn());
         Modules.get().add(new AntiSpawnpoint());
         Modules.get().add(new phase());
+        Modules.get().add(new AntiBorder());
 
 
         // Commands
