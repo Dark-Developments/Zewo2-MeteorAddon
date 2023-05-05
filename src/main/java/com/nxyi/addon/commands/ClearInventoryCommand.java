@@ -14,19 +14,22 @@ import net.minecraft.screen.slot.SlotActionType;
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ClearInventoryCommand extends Command {
+    boolean confirm = false;
     public ClearInventoryCommand() {
-        super("clear-inventory", "Attempts to clear your inventory.");
+        super("clear-inventory", "clear your inventory.");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(ctx -> {
-            warning("Are you sure that you want to clear your inventory? if yes, use " + Config.get().prefix.get() + "clear-inventory confirm.");
+            if(!confirm) {
+                warning("Are you sure that you want to clear your inventory? if yes, use the command again.");
+                confirm = true;
+            } else {
+                for (int i = 9; i < 45; i++) mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, i, 120, SlotActionType.SWAP, mc.player);
+                confirm = false;
+            }
             return SINGLE_SUCCESS;
         });
-        builder.then(literal("confirm").executes(ctx -> {
-            for (int i = 9; i < 45; i++) mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, i, 120, SlotActionType.SWAP, mc.player);
-            return SINGLE_SUCCESS;
-        }));
     }
 }
