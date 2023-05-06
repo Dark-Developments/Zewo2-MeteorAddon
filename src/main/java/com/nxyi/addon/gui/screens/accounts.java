@@ -27,7 +27,6 @@ public class accounts extends WindowScreen {
         WHorizontalList l = add(theme.horizontalList()).expandX().widget();
 
         addButton(l, "SessionLogin", () -> mc.setScreen(new SessionIDScreen(theme, multiplayerScreen, this)));
-        addButton(l, "EasyMC", () -> mc.setScreen(new EasyMCScreen(theme, multiplayerScreen, this)));
     }
 
     private void addButton(WContainer c, String text, Runnable action) {
