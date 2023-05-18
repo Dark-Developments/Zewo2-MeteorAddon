@@ -9,7 +9,8 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import meteordevelopment.meteorclient.systems.commands.Command;
+import meteordevelopment.meteorclient.commands.Command;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.StringNbtReader;
@@ -25,6 +26,9 @@ import java.net.URL;
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ImageLoreCommand extends Command {
+    // crappy hack to make it compile
+    private final MinecraftClient mc = MinecraftClient.getInstance();
+
     private static final SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("You must be in creative mode to use this."));
     private final String block = "█";
     private BufferedImage imageToBuild;
@@ -36,6 +40,7 @@ public class ImageLoreCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(argument("size", IntegerArgumentType.integer()).then(argument("url", StringArgumentType.greedyString()).executes(ctx -> {
+            assert mc.player != null && mc.interactionManager != null;  // impossible, but still
             ItemStack stack = mc.player.getMainHandStack();
             if (stack.isEmpty()) {
                 error("You must be holding a valid item to use this.");
