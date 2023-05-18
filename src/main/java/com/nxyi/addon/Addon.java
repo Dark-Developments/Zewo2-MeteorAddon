@@ -1,13 +1,11 @@
 package com.nxyi.addon;
 
+import com.mojang.logging.LogUtils;
 import com.nxyi.addon.commands.*;
 import com.nxyi.addon.hud.HudExample;
 import com.nxyi.addon.modules.*;
-import com.mojang.logging.LogUtils;
-import com.nxyi.addon.commands.*;
-import com.nxyi.addon.modules.*;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
-import meteordevelopment.meteorclient.systems.commands.Commands;
+import meteordevelopment.meteorclient.commands.Commands;
 import meteordevelopment.meteorclient.systems.hud.Hud;
 import meteordevelopment.meteorclient.systems.hud.HudGroup;
 import meteordevelopment.meteorclient.systems.modules.Category;
@@ -61,18 +59,18 @@ public class Addon extends MeteorAddon {
 
 
         // Commands
-        Commands.get().add(new CheckCMD());
-        Commands.get().add(new ClearInventoryCommand());
-        Commands.get().add(new CrashItemCommand());
-        Commands.get().add(new CreativeBanCommand());
-        Commands.get().add(new CreativeKickAllCommand());
-        Commands.get().add(new DesyncCommand());
-        Commands.get().add(new DisableVehicleGrav());
-        Commands.get().add(new HologramCommand());
-        Commands.get().add(new ImageBookCommand());
-        Commands.get().add(new ImageLoreCommand());
-        Commands.get().add(new TrashCommand());
-        Commands.get().add(new ReloadCapes());
+        Commands.add(new CheckCMD());
+        Commands.add(new ClearInventoryCommand());
+        Commands.add(new CrashItemCommand());
+        Commands.add(new CreativeBanCommand());
+        Commands.add(new CreativeKickAllCommand());
+        Commands.add(new DesyncCommand());
+        Commands.add(new DisableVehicleGrav());
+        Commands.add(new HologramCommand());
+        Commands.add(new ImageBookCommand());
+        Commands.add(new ImageLoreCommand());
+        Commands.add(new TrashCommand());
+        Commands.add(new ReloadCapes());
 
         // HUD
         Hud.get().register(HudExample.INFO);

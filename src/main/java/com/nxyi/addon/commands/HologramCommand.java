@@ -8,7 +8,8 @@ package com.nxyi.addon.commands;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import meteordevelopment.meteorclient.systems.commands.Command;
+import meteordevelopment.meteorclient.commands.Command;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -16,11 +17,13 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtDouble;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.Vec3d;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class HologramCommand extends Command {
+    // crappy hack to make it compile
+    private final MinecraftClient mc = MinecraftClient.getInstance();
+
     private static final SimpleCommandExceptionType NOT_IN_CREATIVE = new SimpleCommandExceptionType(Text.literal("You must be in creative mode to use this."));
 
     public HologramCommand() {
@@ -30,6 +33,7 @@ public class HologramCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(argument("message", StringArgumentType.greedyString()).executes(ctx -> {
+            assert mc.player != null && mc.interactionManager != null;  // impossible, but still
             String message = ctx.getArgument("message", String.class).replace("&", "\247");
             ItemStack stack = new ItemStack(Items.ARMOR_STAND);
             NbtCompound tag = new NbtCompound();
@@ -45,6 +49,7 @@ public class HologramCommand extends Command {
             return SINGLE_SUCCESS;
         }));
         builder.then(literal("currentPos").then(argument("message", StringArgumentType.greedyString()).executes(ctx -> {
+            assert mc.player != null && mc.interactionManager != null;  // impossible, but still
             String message = ctx.getArgument("message", String.class).replace("&", "\247");
             ItemStack stack = new ItemStack(Items.ARMOR_STAND);
             NbtCompound tag = new NbtCompound();

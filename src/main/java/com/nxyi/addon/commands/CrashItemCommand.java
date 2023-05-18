@@ -6,7 +6,8 @@
 package com.nxyi.addon.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import meteordevelopment.meteorclient.systems.commands.Command;
+import meteordevelopment.meteorclient.commands.Command;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -18,6 +19,9 @@ import net.minecraft.network.packet.c2s.play.CreativeInventoryActionC2SPacket;
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class CrashItemCommand extends Command {
+    // crappy hack to make it compile
+    private final MinecraftClient mc = MinecraftClient.getInstance();
+
 
     public CrashItemCommand() {
         super("crashitem", "Gives you crash items.");
@@ -26,6 +30,7 @@ public class CrashItemCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.then(literal("CrashFireball").executes(ctx -> {
+            assert mc.player != null && mc.getNetworkHandler() != null; // impossible, but still
             ItemStack CrashFireball = new ItemStack(Items.CAVE_SPIDER_SPAWN_EGG);
             NbtCompound tag1 = new NbtCompound();
             NbtList power = new NbtList();
@@ -41,6 +46,7 @@ public class CrashItemCommand extends Command {
         }));
 
         builder.then(literal("OOBEgg").executes(ctx -> {
+            assert mc.player != null && mc.getNetworkHandler() != null; // impossible, but still
             ItemStack gato = new ItemStack(Items.CAT_SPAWN_EGG);
             NbtCompound tag2 = new NbtCompound();
             NbtList pos = new NbtList();
