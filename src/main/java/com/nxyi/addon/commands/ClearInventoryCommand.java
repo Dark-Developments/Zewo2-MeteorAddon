@@ -6,27 +6,34 @@
 package com.nxyi.addon.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import meteordevelopment.meteorclient.systems.commands.Command;
-import meteordevelopment.meteorclient.systems.config.Config;
+import meteordevelopment.meteorclient.commands.Command;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 import net.minecraft.screen.slot.SlotActionType;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class ClearInventoryCommand extends Command {
+    // crappy hack to make it compile
+    private final MinecraftClient mc = MinecraftClient.getInstance();
+
+    boolean confirm = false;
     public ClearInventoryCommand() {
-        super("clear-inventory", "Attempts to clear your inventory.");
+        super("clear-inventory", "clear your inventory.");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(ctx -> {
-            warning("Are you sure that you want to clear your inventory? if yes, use " + Config.get().prefix.get() + "clear-inventory confirm.");
+            assert mc.interactionManager != null && mc.player != null;  // impossible, but still
+            if(!confirm) {
+                warning("Are you sure that you want to clear your inventory? if yes, use the command again.");
+                confirm = true;
+            } else {
+                for (int i = 9; i < 45; i++) mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, i, 120, SlotActionType.SWAP, mc.player);
+                confirm = false;
+            }
             return SINGLE_SUCCESS;
         });
-        builder.then(literal("confirm").executes(ctx -> {
-            for (int i = 9; i < 45; i++) mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, i, 120, SlotActionType.SWAP, mc.player);
-            return SINGLE_SUCCESS;
-        }));
     }
 }

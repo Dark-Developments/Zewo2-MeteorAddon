@@ -6,13 +6,17 @@
 package com.nxyi.addon.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import meteordevelopment.meteorclient.systems.commands.Command;
+import meteordevelopment.meteorclient.commands.Command;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.Entity;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class DesyncCommand extends Command {
+    // crappy hack to make it compile
+    private final MinecraftClient mc = MinecraftClient.getInstance();
+
     private Entity entity = null;
 
     public DesyncCommand() {
@@ -22,6 +26,7 @@ public class DesyncCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(context -> {
+            assert mc.player != null && mc.world != null;   // impossible, but still
             if (this.entity == null) {
                 if (mc.player.hasVehicle()) {
                     this.entity = mc.player.getVehicle();

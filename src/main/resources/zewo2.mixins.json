@@ -4,7 +4,6 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "ChatMixin",
-    "ClientLoginNetworkHandlerMixin",
     "MultiplayerScreenMixin",
     "RenderCapes",
     "SessionMixin",
@@ -15,6 +14,7 @@
   },
   "mixins": [
     "ClientNameMixin",
-    "DiscordPresenceMixin"
+    "DiscordPresenceMixin",
+    "EntityMixin"
   ]
 }
