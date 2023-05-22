@@ -44,7 +44,7 @@ Build the Jar from Source directly
 **WARNING**: Dev builds a unstable.
 ## Info
 
-Fabric Utility Mod.
+Better Utility Mod.
 
 ## Disclaimer
 

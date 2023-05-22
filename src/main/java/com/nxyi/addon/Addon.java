@@ -25,6 +25,7 @@ public class Addon extends MeteorAddon {
     @Override
     public void onInitialize() {
         LOG.info("Kawaii Mode Activated");
+        master
 
         // Modules
         Modules.get().add(new SpamBypass());
