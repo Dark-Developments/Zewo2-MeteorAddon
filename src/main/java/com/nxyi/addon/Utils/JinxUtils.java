@@ -31,6 +31,13 @@ import static meteordevelopment.meteorclient.MeteorClient.LOG;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class JinxUtils {
+
+    public static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (Exception ignored) {
+        }
+    }
     public static final List<String> ANTICHEAT_LIST = Arrays.asList("grimac", "nocheatplus", "negativity", "warden", "horizon", "illegalstack", "coreprotect", "exploitsx", "vulcan", "abc", "spartan", "kauri", "anticheatreloaded", "witherac", "godseye", "matrix", "wraith");
     public static void sendSignedMessage(String message) {
         if (message.startsWith("/")) mc.player.sendMessage(Text.of(message.substring(1)));

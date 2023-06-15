@@ -25,7 +25,6 @@ public class Addon extends MeteorAddon {
     @Override
     public void onInitialize() {
         LOG.info("Kawaii Mode Activated");
-        master
 
         // Modules
         Modules.get().add(new SpamBypass());
@@ -50,13 +49,13 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Groupmessage());
         Modules.get().add(new RainbowArmor());
         Modules.get().add(new PenisESP());
-        Modules.get().add(new SleepDetector());
         Modules.get().add(new EntityFly());
         Modules.get().add(new FakeAttack());
         Modules.get().add(new AutoHorn());
         Modules.get().add(new AntiSpawnpoint());
         Modules.get().add(new phase());
         Modules.get().add(new AntiBorder());
+        Modules.get().add(new Bookchat());
 
 
         // Commands
