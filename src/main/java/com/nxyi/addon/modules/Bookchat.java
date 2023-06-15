@@ -35,13 +35,8 @@ public class Bookchat extends Module {
     @EventHandler
     private void onchat(SendMessageEvent event){
         String msg = mc.player.getEntityName() + " : " + event.message;
-        event.cancel();
         if (mc.player.getMainHandStack().getItem().equals(Items.WRITABLE_BOOK)){
-            int index = InvUtils.finditem(Items.WRITABLE_BOOK);
-            if (index == -1) {
-                info("you are not holding a book");
-                return;
-            }
+            event.cancel();
             info(msg);
             mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, Collections.singletonList(msg), Optional.empty()));
         }
