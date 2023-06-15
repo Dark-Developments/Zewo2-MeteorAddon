@@ -32,13 +32,6 @@ public class Bookchat extends Module {
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
     private final Setting<String> person = sgGeneral.add(new StringSetting.Builder().name("Person").description("Person your chatting with").defaultValue("").build());
 
-    private final Setting<Boolean> autobook = sgGeneral.add(new BoolSetting.Builder()
-        .name("autoswitchbook")
-        .description("Automatically hold the book on chat if not in hand")
-        .defaultValue(true)
-        .build()
-    );
-
     @EventHandler
     private void onchat(SendMessageEvent event){
         String msg = mc.player.getEntityName() + " : " + event.message;
