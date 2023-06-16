@@ -20,7 +20,6 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.Hand;
 
 import java.lang.reflect.Array;
-import org.apache.commons.codec.binary.Base64;
 import java.util.*;
 
 public class Bookchat extends Module {
@@ -33,12 +32,6 @@ public class Bookchat extends Module {
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
     private final Setting<String> person = sgGeneral.add(new StringSetting.Builder().name("Person").description("Person your chatting with").defaultValue("").build());
 
-    private final Setting<Boolean> encryption = sgGeneral.add(new BoolSetting.Builder()
-        .name("encryption")
-        .description("Encrypt the messages in base64.")
-        .defaultValue(false)
-        .build()
-    );
 
     @EventHandler
     private void onchat(SendMessageEvent event){
@@ -46,8 +39,8 @@ public class Bookchat extends Module {
         if (mc.player.getMainHandStack().getItem().equals(Items.WRITABLE_BOOK)){
             event.cancel();
             info(mc.player.getEntityName() + " : " + msg);
-            String encrypted = Base64.encodeBase64String(msg.getBytes());
-            mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, Collections.singletonList((encryption.get() ? encrypted : msg)), Optional.empty()));
+            String encrypted = Base64.getEncoder().encodeToString(msg.getBytes());
+            mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, Collections.singletonList(encrypted), Optional.empty()));
         }
     }
 
@@ -82,15 +75,13 @@ public class Bookchat extends Module {
                 .replaceAll("\"", "")
                 .replaceAll("," , " ");
 
-            byte[] decodedBytes = Base64.decodeBase64(text);
+            byte[] decodedBytes = Base64.getDecoder().decode(text);
             String decodedString = new String(decodedBytes);
 
             if (Objects.equals(lasttext, text)) return;
 
-            boolean isBase64 = Base64.isBase64(text.getBytes());
-
             lasttext = text;
-            info(playerEntity.getEntityName() + " : " + (isBase64 ? decodedString : text));
+            info(playerEntity.getEntityName() + " : " + decodedString);
         }
     }
 }
