@@ -71,6 +71,8 @@ public class Addon extends MeteorAddon {
         Commands.add(new ImageLoreCommand());
         Commands.add(new TrashCommand());
         Commands.add(new ReloadCapes());
+        Commands.add(new SpamCommand());
+        Commands.add(new CrackedOpSpamCommand());
 
         // HUD
         Hud.get().register(HudExample.INFO);
