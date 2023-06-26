@@ -68,7 +68,7 @@ public class Bookchat extends Module {
         if (playerEntity == null) return;
 
         if (playerEntity.getMainHandStack().getItem().equals(Items.WRITABLE_BOOK)){
-            if (playerEntity.getMainHandStack().getNbt().get("pages").toString() == null) return;
+            if (playerEntity.getMainHandStack().getNbt().toString() == null) return;
             String text = playerEntity.getMainHandStack().getNbt().get("pages").toString()
                 .replaceAll("\\]", "")
                 .replaceAll("\\[", "")

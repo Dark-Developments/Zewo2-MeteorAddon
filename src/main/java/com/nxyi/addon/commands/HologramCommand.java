@@ -20,7 +20,7 @@ import net.minecraft.text.Text;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
-public class HologramCommand extends Command {
+public class    HologramCommand extends Command {
     // crappy hack to make it compile
     private final MinecraftClient mc = MinecraftClient.getInstance();
 
