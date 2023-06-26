@@ -22,7 +22,7 @@ public class CrackedOpSpamCommand extends Command {
                 //make new thread to try to prevent some lag
                 new Thread(() -> {
                     for (int i = 0; i < amount; i++){
-                        MinecraftClient.getInstance().player.networkHandler.sendChatCommand("op " + name + amount);
+                        MinecraftClient.getInstance().player.networkHandler.sendChatCommand("op " + name + i);
                     }
                 }).start();
 
