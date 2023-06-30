@@ -5,9 +5,13 @@
 <h1 align="center">Zewo2 Addon</h1>
 
 <div style="display: grid; place-items: center;">
-    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Dark-Developments/Popbobxd-Addon?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Kapuncino-Meteor?color=black&label=Developers">
-<img alt="GitHub contributors" src="https://img.shields.io/github/v/release/Dark-Developments/Popbobxd-Addon?display_name=tag&include_prereleases&color=black">
-    <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Dark-Developments/Popbobxd-Addon/total?color=black">
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Dark-Developments/Zewo2-Addon?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Kapuncino-Meteor?color=black&label=Developers">
+<img alt="GitHub contributors" src="https://img.shields.io/github/v/release/Dark-Developments/Zewo2-Addon?display_name=tag&include_prereleases&color=black">
+    <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Dark-Developments/Zewo2-Addon/total?color=black">
+
+<div align="center">
+  <a href="https://discord.gg/kja3YYV7R9"><img src="https://invidget.switchblade.xyz/kja3YYV7R9"></a>
+</div>
 
 </div>
 
