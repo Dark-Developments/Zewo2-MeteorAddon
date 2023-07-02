@@ -23,10 +23,18 @@ public class CrackedOpSpamCommand extends Command {
                 new Thread(() -> {
                     for (int i = 0; i < amount; i++){
                         MinecraftClient.getInstance().player.networkHandler.sendChatCommand("op " + name + i);
+                        sleep(500);
                     }
                 }).start();
 
                 return 1;
             })));
+    }
+
+    public static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (Exception ignored) {
+        }
     }
 }
