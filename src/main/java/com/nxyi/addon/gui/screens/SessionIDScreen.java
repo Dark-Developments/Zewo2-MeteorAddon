@@ -7,10 +7,15 @@ import meteordevelopment.meteorclient.gui.GuiTheme;
 import meteordevelopment.meteorclient.gui.WindowScreen;
 import meteordevelopment.meteorclient.gui.widgets.containers.WTable;
 import meteordevelopment.meteorclient.gui.widgets.input.WTextBox;
+import meteordevelopment.meteorclient.systems.accounts.Account;
+import meteordevelopment.meteorclient.systems.accounts.Accounts;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
+import net.minecraft.client.util.Session;
+
+import java.util.Optional;
 
 public class SessionIDScreen extends WindowScreen {
     private final MultiplayerScreen multiplayerScreen;
@@ -43,22 +48,14 @@ public class SessionIDScreen extends WindowScreen {
         t.add(theme.button("Done")).minWidth(220).expandX().widget().action = () -> {
             if (ID.get().isEmpty() || UUID.get().isEmpty() || USER.get().isEmpty()) return;
 
-            SetSession.username = USER.get();
-            SetSession.UUID = UUID.get();
-            SetSession.accessToken = ID.get();
+            Account.setSession(new Session(USER.get(), UUID.get(), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MOJANG));
 
-            SetSession.sessionid = "token:" + SetSession.accessToken + ":" + SetSession.UUID;
-            SetSession.originalSession = false;
             mc.setScreen(new MultiplayerScreen(this.parent));
         };
 
         t.add(theme.button("Return ACC")).minWidth(220).expandX().widget().action = () -> {
-            SetSession.username = Addon.BOOTNAME;
-            SetSession.UUID = Addon.BOOTUUID;
-            SetSession.accessToken = Addon.BOOTSESSION;
+            Account.setSession(new Session(Addon.BOOTNAME, Addon.BOOTUUID, Addon.BOOTSESSION, Optional.empty(), Optional.empty(), Session.AccountType.MOJANG));
 
-            SetSession.sessionid = "token:" + SetSession.accessToken + ":" + SetSession.UUID;
-            SetSession.originalSession = false;
             mc.setScreen(new MultiplayerScreen(this.parent));
         };
     }

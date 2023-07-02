@@ -16,16 +16,16 @@ public class SpamCommand extends Command {
 
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
-        builder.then(argument("amount" ,IntegerArgumentType.integer(0))
-            .then(argument("text", StringArgumentType.string())).executes(ctx -> {
+        builder.then(argument("amount", IntegerArgumentType.integer(0))
+            .then(argument("text", StringArgumentType.string()).executes(ctx -> {
                 int amount = IntegerArgumentType.getInteger(ctx, "amount");
                 String text = StringArgumentType.getString(ctx, "text");
 
-                for (int i = 0; i < amount; i++){
+                for (int i = 0; i < amount; i++) {
                     MinecraftClient.getInstance().player.networkHandler.sendChatMessage(text);
                 }
 
                 return SINGLE_SUCCESS;
-            }));
+            })));
     }
 }

@@ -3,6 +3,7 @@ package com.nxyi.addon;
 import com.mojang.logging.LogUtils;
 import com.nxyi.addon.commands.*;
 import com.nxyi.addon.hud.HudExample;
+import com.nxyi.addon.irc.IRC;
 import com.nxyi.addon.modules.*;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.commands.Commands;
@@ -14,6 +15,8 @@ import net.minecraft.client.MinecraftClient;
 import org.slf4j.Logger;
 
 public class Addon extends MeteorAddon {
+    private static IRC irc;
+
     public static String BOOTNAME;
     public static String BOOTUUID;
     public static String BOOTSESSION;
@@ -56,6 +59,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new phase());
         Modules.get().add(new AntiBorder());
         Modules.get().add(new Bookchat());
+//        Modules.get().add(new com.nxyi.addon.modules.IRC());
 
 
         // Commands
@@ -73,6 +77,7 @@ public class Addon extends MeteorAddon {
         Commands.add(new ReloadCapes());
         Commands.add(new SpamCommand());
         Commands.add(new CrackedOpSpamCommand());
+        Commands.add(new IRCCommand());
 
         // HUD
         Hud.get().register(HudExample.INFO);
@@ -81,6 +86,14 @@ public class Addon extends MeteorAddon {
         BOOTSESSION = accessed.split(":")[0];
         BOOTUUID = accessed.split(":")[1];
         BOOTNAME = MinecraftClient.getInstance().getSession().getUsername();
+    }
+
+    public static void startIRC(String username) {
+        irc = new IRC(username, "irc.libera.chat", 6697);
+    }
+
+    public static IRC getIrc() {
+        return irc;
     }
 
     @Override
