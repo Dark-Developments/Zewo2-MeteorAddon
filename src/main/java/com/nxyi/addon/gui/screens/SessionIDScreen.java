@@ -48,7 +48,7 @@ public class SessionIDScreen extends WindowScreen {
         t.add(theme.button("Done")).minWidth(220).expandX().widget().action = () -> {
             if (ID.get().isEmpty() || UUID.get().isEmpty() || USER.get().isEmpty()) return;
 
-            Account.setSession(new Session(USER.get(), UUID.get(), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MOJANG));
+            Account.setSession(new Session(USER.get(), UUID.get(), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MSA));
 
             mc.setScreen(new MultiplayerScreen(this.parent));
         };
