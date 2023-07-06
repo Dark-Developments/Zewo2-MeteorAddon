@@ -30,7 +30,6 @@ public class Addon extends MeteorAddon {
         LOG.info("Kawaii Mode Activated");
 
         // Modules
-        Modules.get().add(new SpamBypass());
         Modules.get().add(new SoundCoordLogger());
         Modules.get().add(new InstaMine());
         Modules.get().add(new NoChatFormatting());
