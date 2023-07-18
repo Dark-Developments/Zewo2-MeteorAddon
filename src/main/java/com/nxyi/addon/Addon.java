@@ -58,6 +58,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new phase());
         Modules.get().add(new AntiBorder());
         Modules.get().add(new Bookchat());
+        Modules.get().add(new StrongholdFinder());
 //        Modules.get().add(new com.nxyi.addon.modules.IRC());
 
 
