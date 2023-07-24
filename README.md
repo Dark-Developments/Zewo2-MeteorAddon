@@ -40,7 +40,7 @@
 ## Setup
 
 ### Install Stable Version
-For instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+click [here](https://github.com/Dark-Developments/Zewo2-Addon/releases) for releases
 
 ### Install Dev build
 Build the Jar from Source directly
@@ -48,7 +48,7 @@ Build the Jar from Source directly
 **WARNING**: Dev builds a unstable.
 ## Info
 
-Better Utility Mod.
+Better --Utility-- hack Client.
 
 ## Disclaimer
 
