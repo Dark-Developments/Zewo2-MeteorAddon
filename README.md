@@ -48,7 +48,7 @@ Build the Jar from Source directly
 **WARNING**: Dev builds a unstable.
 ## Info
 
-Better --Utility-- hack Client.
+Better ~~Utility~~ Hack Client.
 
 ## Disclaimer
 
