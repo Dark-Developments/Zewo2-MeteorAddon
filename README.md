@@ -46,9 +46,6 @@ click [here](https://github.com/Dark-Developments/Zewo2-Addon/releases) for rele
 Build the Jar from Source directly
 
 **WARNING**: Dev builds a unstable.
-## Info
-
-Better ~~Utility~~ Hack Client.
 
 ## Disclaimer
 
