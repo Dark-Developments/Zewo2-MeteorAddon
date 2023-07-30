@@ -55,6 +55,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new AntiBorder());
         Modules.get().add(new Bookchat());
         Modules.get().add(new StrongholdFinder());
+        Modules.get().add(new Fling());
 
 
         // Commands

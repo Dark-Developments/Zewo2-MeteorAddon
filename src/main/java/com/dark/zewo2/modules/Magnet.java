@@ -6,6 +6,8 @@
 package com.dark.zewo2.modules;
 
 import com.dark.zewo2.Addon;
+import com.dark.zewo2.Utils.JinxUtils;
+import com.dark.zewo2.Utils.Utils;
 import meteordevelopment.meteorclient.events.entity.player.PlayerMoveEvent;
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
@@ -49,12 +51,12 @@ public class Magnet extends Module {
 
     }
 
-    //Bad system and gets stuck ALOT will fix
     @EventHandler
     private void onTick(TickEvent.Pre event) {
         for (Entity entity : mc.world.getEntities()) {
             if (Objects.equals(entity.getType().toString(), "entity.minecraft.item") && mc.player.distanceTo(entity) <= range.get()) {
                 if (mc.player == null || mc.world == null) return;
+                if (!Utils.isABFree(mc.player.getPos(), entity.getPos())) return;
                 mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(entity.getX(), entity.getY(), entity.getZ(), true));
             }
         }
