@@ -56,6 +56,9 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Bookchat());
         Modules.get().add(new StrongholdFinder());
         Modules.get().add(new Fling());
+        Modules.get().add(new Girlboss());
+        Modules.get().add(new PermJukebox());
+        Modules.get().add(new AntiNbtBypasser());
 
 
         // Commands
