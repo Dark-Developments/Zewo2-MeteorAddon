@@ -11,10 +11,16 @@ import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.mixin.AbstractSignEditScreenAccessor;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
+import meteordevelopment.meteorclient.utils.player.FindItemResult;
+import meteordevelopment.meteorclient.utils.player.InvUtils;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.block.Block;
 import net.minecraft.block.SignBlock;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.gui.screen.ingame.SignEditScreen;
+import net.minecraft.item.DyeItem;
+import net.minecraft.item.GoatHornItem;
+import net.minecraft.item.Item;
 import net.minecraft.network.packet.c2s.play.CloseHandledScreenC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
@@ -26,10 +32,12 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import org.reflections.vfs.Vfs;
 
+import java.util.List;
+
 public class BetterAutoSign extends Module {
     BlockPos last = new BlockPos(0,-500,0);
 
-    private final SettingGroup sgGeneral = this.settings.createGroup("Front");
+    private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
 
     private final Setting<BetterAutoSign.sides> mode = sgGeneral.add(new EnumSetting.Builder<BetterAutoSign.sides>()
         .name("mode")
@@ -61,8 +69,12 @@ public class BetterAutoSign extends Module {
 
             BlockPos sign = new BlockPos(packet.getPos());
 
-            if (mode.get().equals(sides.front)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
-            if (mode.get().equals(sides.back)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            if (mode.get().equals(sides.front)) {
+                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            }
+            if (mode.get().equals(sides.back)) {
+                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            }
 
             if (mode.get().equals(sides.both)){
                 mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
@@ -94,6 +106,10 @@ public class BetterAutoSign extends Module {
         else if (dir.equals(Direction.EAST)) return Direction.WEST;
         else if (dir.equals(Direction.SOUTH)) return Direction.NORTH;
         else return Direction.EAST;
+    }
+
+    private boolean itemfilter(Item item) {
+        return item instanceof DyeItem;
     }
 
     public enum sides{
