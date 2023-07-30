@@ -14,7 +14,15 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.gui.screen.ingame.SignEditScreen;
+import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
+import net.minecraft.network.packet.s2c.play.SignEditorOpenS2CPacket;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import org.reflections.vfs.Vfs;
 
 public class BetterAutoSign extends Module {
 
@@ -43,18 +51,19 @@ public class BetterAutoSign extends Module {
     }
 
     @EventHandler
-    private void onSendPacket(PacketEvent.Send event) {
-        if (!(event.packet instanceof UpdateSignC2SPacket)) return;
-    }
-
-    @EventHandler
     private void onOpenScreen(OpenScreenEvent event) {
         if (!(event.screen instanceof SignEditScreen)) return;
 
         SignBlockEntity sign = ((AbstractSignEditScreenAccessor) event.screen).getSign();
 
-        if (mode.get().equals(sides.front) || mode.get().equals(sides.both)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
-        if (mode.get().equals(sides.back) || mode.get().equals(sides.both)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+        if (mode.get().equals(sides.front)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+        if (mode.get().equals(sides.back)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+
+        if (mode.get().equals(sides.both)){
+            mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getPos().getX(), sign.getPos().getY(), sign.getPos().getZ()), getop(mc.player.getHorizontalFacing()), sign.getPos(), false), 0));
+            mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+        }
 
         event.cancel();
     }
@@ -64,7 +73,14 @@ public class BetterAutoSign extends Module {
         else return text;
     }
 
-    private enum sides{
+    private Direction getop(Direction dir){
+        if (dir.equals(Direction.NORTH)) return Direction.SOUTH;
+        else if (dir.equals(Direction.EAST)) return Direction.WEST;
+        else if (dir.equals(Direction.SOUTH)) return Direction.NORTH;
+        else return Direction.EAST;
+    }
+
+    public enum sides{
         back,
         front,
         both
