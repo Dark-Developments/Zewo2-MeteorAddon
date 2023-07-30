@@ -12,8 +12,10 @@ import meteordevelopment.meteorclient.mixin.AbstractSignEditScreenAccessor;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.block.SignBlock;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.gui.screen.ingame.SignEditScreen;
+import net.minecraft.network.packet.c2s.play.CloseHandledScreenC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
 import net.minecraft.network.packet.s2c.play.SignEditorOpenS2CPacket;
@@ -25,6 +27,7 @@ import net.minecraft.util.math.Vec3d;
 import org.reflections.vfs.Vfs;
 
 public class BetterAutoSign extends Module {
+    BlockPos last = new BlockPos(0,-500,0);
 
     private final SettingGroup sgGeneral = this.settings.createGroup("Front");
 
@@ -51,21 +54,34 @@ public class BetterAutoSign extends Module {
     }
 
     @EventHandler
-    private void onOpenScreen(OpenScreenEvent event) {
-        if (!(event.screen instanceof SignEditScreen)) return;
+    private void packet(PacketEvent.Receive event){
+        if (event.packet instanceof SignEditorOpenS2CPacket packet){
+            event.cancel();
+            if (packet.getPos().equals(last)) return;
 
-        SignBlockEntity sign = ((AbstractSignEditScreenAccessor) event.screen).getSign();
+            BlockPos sign = new BlockPos(packet.getPos());
 
-        if (mode.get().equals(sides.front)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
-        if (mode.get().equals(sides.back)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            if (mode.get().equals(sides.front)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            if (mode.get().equals(sides.back)) mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
 
-        if (mode.get().equals(sides.both)){
-            mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
-            mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getPos().getX(), sign.getPos().getY(), sign.getPos().getZ()), getop(mc.player.getHorizontalFacing()), sign.getPos(), false), 0));
-            mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign.getPos(), false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            if (mode.get().equals(sides.both)){
+                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), getop(mc.player.getHorizontalFacing()), sign, false), 0));
+                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+            }
+
+            //this is to stop the packet spam loop when using 'both' mode
+            last = sign;
+            new Thread(() -> {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                last = null;
+            }).start();
         }
-
-        event.cancel();
     }
 
     private String isempty(String text){
@@ -81,8 +97,8 @@ public class BetterAutoSign extends Module {
     }
 
     public enum sides{
-        back,
         front,
+        back,
         both
     }
 }
