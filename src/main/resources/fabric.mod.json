@@ -3,12 +3,12 @@
   "id": "zewo2",
   "version": "${version}",
   "name": "Zewo2",
-  "description": "An addon template for the Meteor addons.",
+  "description": "A meteor addon.",
   "authors": [
-    "Nxyi#7584"
+    "Nxyi"
   ],
   "contact": {
-    "repo": "https://github.com/Nxyi/Kapuncino-Meteor"
+    "repo": "https://github.com/Dark-Developments/Zewo2-Addon"
   },
   "icon": "assets/template/icon.png",
   "environment": "client",
