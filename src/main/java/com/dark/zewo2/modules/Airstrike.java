@@ -59,7 +59,7 @@ public class Airstrike extends Module {
         .build());
 
     public Airstrike() {
-        super(Addon.CATEGORY, "airstrike", "some nn skidded this you know who you are :pointnlaugh:");
+        super(Addon.CATEGORY, "airstrike", "nuke the area around you");
     }
 
     Vec3d origin = null;
