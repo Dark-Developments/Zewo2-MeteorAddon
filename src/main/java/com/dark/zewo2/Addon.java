@@ -89,6 +89,6 @@ public class Addon extends MeteorAddon {
 
     @Override
     public String getPackage() {
-        return "com.nxyi.addon";
+        return "com.dark.zewo2";
     }
 }

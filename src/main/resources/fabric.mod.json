@@ -14,7 +14,7 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "com.nxyi.addon.Addon"
+      "com.dark.zewo2.Addon"
     ]
   },
   "mixins": [

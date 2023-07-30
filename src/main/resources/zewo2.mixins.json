@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.nxyi.addon.mixin",
+  "package": "com.dark.zewo2.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
     "ChatMixin",
