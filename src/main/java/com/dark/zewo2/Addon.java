@@ -56,7 +56,6 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Bookchat());
         Modules.get().add(new StrongholdFinder());
         Modules.get().add(new Fling());
-        Modules.get().add(new Girlboss());
         Modules.get().add(new PermJukebox());
         Modules.get().add(new AntiNbtBypasser());
 
@@ -80,6 +79,7 @@ public class Addon extends MeteorAddon {
         // HUD
 //        Hud.get().register(HudExample.INFO);
 
+        //for the sessionID login screen, so you can return to the account you started with
         String accessed = MinecraftClient.getInstance().getSession().getSessionId().replaceAll("token:", "");
         BOOTSESSION = accessed.split(":")[0];
         BOOTUUID = accessed.split(":")[1];

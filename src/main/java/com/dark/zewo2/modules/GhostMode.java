@@ -17,42 +17,20 @@ import net.minecraft.client.gui.screen.DeathScreen;
 
 public class GhostMode extends Module {
 
-    private final SettingGroup sgGeneral = settings.getDefaultGroup();
-
-    private final Setting<Boolean> fullFood = sgGeneral.add(new BoolSetting.Builder()
-        .name("full-food")
-        .description("Sets the food level client-side to max.")
-        .defaultValue(true)
-        .build()
-    );
-
     public GhostMode() {
-        super(Addon.CATEGORY, "ghost-mode", "Allows you to keep playing after you die. Works on Forge, Fabric and Vanilla servers.");
+        super(Addon.CATEGORY, "ghost-mode", "Explore the world after dying.");
     }
-
-    private boolean active = false;
 
     @Override
     public void onDeactivate() {
-        super.onDeactivate();
-        active = false;
-        warning("You are no longer in a ghost mode!");
-        if (mc.player != null && mc.player.networkHandler != null) {
-            mc.player.requestRespawn();
-            info("Respawn request has been sent to the server.");
-        }
-    }
-
-    @EventHandler
-    private void onGameJoin(GameJoinedEvent event) {
-        active = false;
+        mc.player.requestRespawn();
+        info("Respawn request has been sent to the server.");
     }
 
     @EventHandler
     private void onTick(TickEvent.Pre event) {
-        if (!active) return;
-        if (mc.player.getHealth() < 1f) mc.player.setHealth(20f);
-        if (fullFood.get() && mc.player.getHungerManager().getFoodLevel() < 20) {
+        if (mc.player.getHealth() <= 0) {
+            mc.player.setHealth(20f);
             mc.player.getHungerManager().setFoodLevel(20);
         }
     }
@@ -61,11 +39,8 @@ public class GhostMode extends Module {
     private void onOpenScreen(OpenScreenEvent event) {
         if (event.screen instanceof DeathScreen) {
             event.cancel();
-            if (!active) {
-                active = true;
-                info("You are now in a ghost mode. ");
-            }
+
+            info("Ghost mode active. ");
         }
     }
-
 }

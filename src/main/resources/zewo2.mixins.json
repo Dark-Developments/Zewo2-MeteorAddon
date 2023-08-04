@@ -7,8 +7,7 @@
     "MultiplayerScreenMixin",
     "RenderCapes",
     "SessionMixin",
-    "Interface.INClientPlayerInteractionManagerMixin",
-    "MixinMessageHandler"
+    "Interface.INClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
