@@ -39,7 +39,6 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new WorldGuardBypass());
         Modules.get().add(new BetterAutoSign());
         Modules.get().add(new AutoL());
-        Modules.get().add(new PacketLogger());
         Modules.get().add(new Magnet());
         Modules.get().add(new NoSwing());
         Modules.get().add(new chatfilterbypass());
