@@ -30,5 +30,4 @@ public class MixinMessageHandler {
             Girlboss.addSeenSignature(sender.getId(), signatureByteBuffer);
         }
     }
-
 }

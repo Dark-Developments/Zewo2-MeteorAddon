@@ -61,5 +61,4 @@ public class Girlboss extends Module {
         }
         hasSentFirstAlert = true;
     }
-
 }
