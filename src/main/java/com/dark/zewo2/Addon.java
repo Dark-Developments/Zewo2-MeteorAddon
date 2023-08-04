@@ -57,6 +57,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Fling());
         Modules.get().add(new PermJukebox());
         Modules.get().add(new AntiNbtBypasser());
+        Modules.get().add(new SignGriefer());
 
 
         // Commands
