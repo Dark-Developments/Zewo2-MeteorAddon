@@ -1,6 +1,7 @@
 package com.dark.zewo2.modules;
 
 import com.dark.zewo2.Addon;
+import com.dark.zewo2.Utils.JinxUtils;
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;
@@ -60,51 +61,61 @@ public class SignGriefer extends Module {
         super(Addon.CATEGORY, "SignGriefer", "Grief nearby signs using new editor feature");
     }
 
+    boolean editing = false;
+
+    @Override
+    public void onActivate() {
+        editing = false;
+    }
+
     @EventHandler
     public void ontick(TickEvent.Pre event) {
-        int range = reach.get().intValue();
-        for (int x = -range; x <= range; x++){
-            for (int y = -range; y <= range; y++){
-                for (int z = -range; z <= range; z++){
-                    BlockPos sign = mc.player.getBlockPos().add(x,y,z);
-                    Vec3d pos = mc.player.getBlockPos().add(x,y,z).toCenterPos();
-                    SignBlockEntity block = (SignBlockEntity) mc.world.getBlockEntity(sign);
+        new Thread(() -> {
+            int range = reach.get().intValue();
+            for (int x = -range; x <= range; x++){
+                for (int y = -range; y <= range; y++){
+                    for (int z = -range; z <= range; z++){
 
+                        BlockPos sign = mc.player.getBlockPos().add(x,y,z);
 
+                        if (issign(sign)){
+                            List<String> front = getNbt(sign, "front_text");
+                            List<String> back = getNbt(sign, "back_text");
 
+                            if (editing) return;
+                            editing = true;
 
-                    if (issign(sign)){
-                        List<String> front = getNbt(sign, "front_text");
-                        List<String> back = getNbt(sign, "back_text");
-                        if (mode.get().equals(sides.front)) {
+                            if (mode.get().equals(sides.front)) {
 
-                            if (!front.get(0).equals(line1.get()) || !front.get(1).equals(line2.get()) || !front.get(2).equals(line3.get()) || !front.get(3).equals(line4.get())) {
-                                mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
+                                if (!front.get(0).equals(line1.get()) || !front.get(1).equals(line2.get()) || !front.get(2).equals(line3.get()) || !front.get(3).equals(line4.get())) {
+                                    mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
 
-                                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                                    mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                                }
                             }
-                        }
-                        if (mode.get().equals(sides.back)) {
-                            if (!back.get(0).equals(line1.get()) || !back.get(1).equals(line2.get()) || !back.get(2).equals(line3.get()) || !back.get(3).equals(line4.get())) {
-                                mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
+                            if (mode.get().equals(sides.back)) {
+                                if (!back.get(0).equals(line1.get()) || !back.get(1).equals(line2.get()) || !back.get(2).equals(line3.get()) || !back.get(3).equals(line4.get())) {
+                                    mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
 
-                                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                                    mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                                }
                             }
-                        }
 
-                        if (mode.get().equals(sides.both)){
-                            if (!front.get(0).equals(line1.get()) || !front.get(1).equals(line2.get()) || !front.get(2).equals(line3.get()) || !front.get(3).equals(line4.get())
-                            || !back.get(0).equals(line1.get()) || !back.get(1).equals(line2.get()) || !back.get(2).equals(line3.get()) || !back.get(3).equals(line4.get())){
-                                mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
-                                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
-                                mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
-                                mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                            if (mode.get().equals(sides.both)){
+                                if (!front.get(0).equals(line1.get()) || !front.get(1).equals(line2.get()) || !front.get(2).equals(line3.get()) || !front.get(3).equals(line4.get())
+                                    || !back.get(0).equals(line1.get()) || !back.get(1).equals(line2.get()) || !back.get(2).equals(line3.get()) || !back.get(3).equals(line4.get())){
+                                    mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
+                                    mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                                    mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing(), sign, false), 1));
+                                    mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
+                                }
                             }
+                            editing = false;
                         }
                     }
                 }
             }
-        }
+        }).start();
     }
 
     @EventHandler
