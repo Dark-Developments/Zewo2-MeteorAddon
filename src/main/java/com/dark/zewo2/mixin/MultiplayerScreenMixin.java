@@ -23,7 +23,7 @@ public abstract class MultiplayerScreenMixin extends Screen {
         addDrawableChild(ButtonWidget.builder(Text.of(Addon.CATEGORY.toString()), button -> {
                 client.setScreen(new accounts(GuiThemes.get(), (MultiplayerScreen) (Object) this));
             })
-            .position(this.width - 75 - 3 - 150 - 4, 3)
+            .position(this.width - 75 -3, 512 + 3)
             .size(75, 20)
             .build());
     }
