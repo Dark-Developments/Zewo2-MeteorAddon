@@ -2,6 +2,7 @@ package com.dark.zewo2;
 
 import com.dark.zewo2.commands.*;
 import com.dark.zewo2.modules.*;
+import com.dark.zewo2.modules.Boykisser;
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.commands.Commands;
@@ -51,13 +52,15 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new AutoHorn());
         Modules.get().add(new AntiSpawnpoint());
         Modules.get().add(new phase());
-        Modules.get().add(new AntiBorder());
         Modules.get().add(new Bookchat());
         Modules.get().add(new StrongholdFinder());
         Modules.get().add(new Fling());
         Modules.get().add(new PermJukebox());
         Modules.get().add(new AntiNbtBypasser());
         Modules.get().add(new SignGriefer());
+        Modules.get().add(new Boykisser());
+        Modules.get().add(new PingSpoof());
+        Modules.get().add(new ForceField());
 
 
         // Commands

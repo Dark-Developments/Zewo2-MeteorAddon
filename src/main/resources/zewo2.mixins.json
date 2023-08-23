@@ -7,14 +7,14 @@
     "MultiplayerScreenMixin",
     "RenderCapes",
     "SessionMixin",
-    "Interface.INClientPlayerInteractionManagerMixin"
+    "Interface.INClientPlayerInteractionManagerMixin",
+    "PlayerListEntryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "mixins": [
     "ClientNameMixin",
-    "DiscordPresenceMixin",
-    "EntityMixin"
+    "DiscordPresenceMixin"
   ]
 }
