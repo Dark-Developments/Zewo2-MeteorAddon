@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/Dark-Developments/Popbobxd-Addon/master/src/main/resources/assets/template/icon.png" width="20%"/>
+<img src="https://raw.githubusercontent.com/Dark-Developments/Zewo2-Addon/master/src/main/resources/assets/zewo2/icon.png" width="20%"/>
 </p>
 
 <h1 align="center">Zewo2 Addon</h1>
