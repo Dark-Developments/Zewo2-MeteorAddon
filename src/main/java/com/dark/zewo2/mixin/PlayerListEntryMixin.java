@@ -4,6 +4,7 @@ import com.dark.zewo2.modules.Boykisser;
 import com.mojang.authlib.GameProfile;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import net.minecraft.client.network.PlayerListEntry;
+import net.minecraft.client.util.DefaultSkinHelper;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,6 +21,13 @@ public abstract class PlayerListEntryMixin {
     private void onGetTexture(CallbackInfoReturnable<Identifier> info) {
         if (Modules.get().get(Boykisser.class).isActive()) {
             info.setReturnValue(Boykisser.boykisser);
+        }
+    }
+
+    @Inject(method = "getModel", at = @At("HEAD"), cancellable = true)
+    private void getModel(CallbackInfoReturnable<String> info) {
+        if (Modules.get().get(Boykisser.class).isActive()) {
+            info.setReturnValue("slim");
         }
     }
 }
