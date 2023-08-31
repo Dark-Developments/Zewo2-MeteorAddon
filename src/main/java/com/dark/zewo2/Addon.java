@@ -61,6 +61,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Boykisser());
         Modules.get().add(new PingSpoof());
         Modules.get().add(new ForceField());
+        Modules.get().add(new SitModule());
 
 
         // Commands
