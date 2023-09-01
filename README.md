@@ -25,17 +25,17 @@
 
 **- Download Fabric Loader From https://fabricmc.net**
 
-**- Run 1.19.4 Vanilla**
+**- Run 1.20.1 Vanilla**
 
-**- Run the Fabric Loader and Pick Version 1.19.4 (Default)**
+**- Run the Fabric Loader and Pick Version 1.20.1 (Default)**
 
 **- Click Win + R and put %appdata% in the text box**
 
 **- Navigate to the ".minecraft" folder then "mods"**
 
-**- Add the .jar to the mods folder and Run Minecraft 1.19.4 Fabric (With meteor client)**
+**- Add the .jar to the mods folder and Run Minecraft 1.20.1 Fabric (With meteor client)**
 
-**Your Done Now The Client Should be working as expected! If Not Please Join this discord ( https://discord.gg/8JtwkTPnRE ) and we will be happy to help!**
+**Your Done Now The Client Should be working as expected! If Not Please Join this discord ( https://discord.gg/kja3YYV7R9 ) and we will be happy to help!**
 
 ## Setup
 
