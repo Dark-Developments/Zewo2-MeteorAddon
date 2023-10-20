@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/Dark-Developments/Zewo2-Addon/master/src/main/resources/assets/zewo2/icon.png" width="20%"/>
 </p>
 
-<h1 align="center">Zewo2 Addon</h1>
+<h1 align="center">Meteor Zewo2 Addon</h1>
 
 <div style="display: grid; place-items: center;">
     <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Dark-Developments/Zewo2-Addon?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Kapuncino-Meteor?color=black&label=Developers">
