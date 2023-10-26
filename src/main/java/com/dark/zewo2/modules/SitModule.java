@@ -1,6 +1,7 @@
 package com.dark.zewo2.modules;
 
 import com.dark.zewo2.Addon;
+import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Module;
@@ -8,6 +9,7 @@ import meteordevelopment.orbit.EventHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.network.packet.s2c.play.DeathMessageS2CPacket;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 
@@ -26,7 +28,7 @@ public class SitModule extends Module {
     @EventHandler
     private void ontick(TickEvent.Pre event){
         if (target != null) {
-            mc.player.setPosition(target.getPos().x, target.getPos().y + target.getHeight(), target.getPos().z);
+            mc.player.setPosition(target.getPos().x, target.getPos().y + target.getHeight() + 0.04, target.getPos().z);
             mc.player.setVelocity(0,0,0);
 
             if (kickdelay <= 0) {
@@ -44,6 +46,14 @@ public class SitModule extends Module {
         }
 
         if (mc.options.sneakKey.isPressed()){
+            target = null;
+        }
+    }
+
+    @EventHandler
+    private void onPacketReceive(PacketEvent.Receive event)  {
+        if (event.packet instanceof DeathMessageS2CPacket packet) {
+            Entity entity = mc.world.getEntityById(packet.getEntityId());
             target = null;
         }
     }

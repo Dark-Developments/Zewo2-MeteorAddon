@@ -62,7 +62,8 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new PingSpoof());
         Modules.get().add(new ForceField());
         Modules.get().add(new SitModule());
-
+        Modules.get().add(new AutoWordReact());
+        Modules.get().add(new StorageVoider());
 
         // Commands
         Commands.add(new CheckCMD());
@@ -79,6 +80,7 @@ public class Addon extends MeteorAddon {
         Commands.add(new ReloadCapes());
         Commands.add(new SpamCommand());
         Commands.add(new CrackedOpSpamCommand());
+        Commands.add(new MinefortJoin());
 
         // HUD
 //        Hud.get().register(HudExample.INFO);

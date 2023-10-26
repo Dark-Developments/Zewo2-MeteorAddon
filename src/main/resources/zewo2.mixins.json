@@ -8,7 +8,8 @@
     "RenderCapes",
     "SessionMixin",
     "Interface.INClientPlayerInteractionManagerMixin",
-    "PlayerListEntryMixin"
+    "PlayerListEntryMixin",
+    "GenericContainerScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
