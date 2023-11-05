@@ -3,7 +3,6 @@ package com.dark.zewo2.gui.settings;
 import com.mojang.authlib.GameProfile;
 import com.mojang.util.UUIDTypeAdapter;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.Session;
 import net.minecraft.network.encryption.PlayerPublicKey;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,7 +25,7 @@ public class SetSession {
     @Nullable
     public static java.util.UUID getUuidOrNull() {
         try {
-            return UUIDTypeAdapter.fromString(UUID);
+            return java.util.UUID.fromString(UUID);
         } catch (IllegalArgumentException var2) {
             return null;
         }

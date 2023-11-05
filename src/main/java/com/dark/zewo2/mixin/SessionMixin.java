@@ -2,7 +2,7 @@ package com.dark.zewo2.mixin;
 
 import com.mojang.authlib.GameProfile;
 import com.dark.zewo2.gui.settings.SetSession;
-import net.minecraft.client.util.Session;
+import net.minecraft.client.session.Session;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -30,13 +30,13 @@ public class SessionMixin {
         cir.setReturnValue(SetSession.username);
     }
 
-    @Inject(at=@At("TAIL"), method="getUuid", cancellable = true)
+    @Inject(at=@At("TAIL"), method="getUuidOrNull", cancellable = true)
     private void getUuid(CallbackInfoReturnable<String> cir) {
         if (SetSession.originalSession) return;
         cir.setReturnValue(SetSession.UUID);
     }
 
-    @Inject(at=@At("TAIL"), method="getProfile", cancellable = true)
+    @Inject(at=@At("TAIL"), method="getSessionId", cancellable = true)
     private void getProfile(CallbackInfoReturnable<GameProfile> cir) {
         if (SetSession.originalSession) return;
         cir.setReturnValue(SetSession.getGameProfile());

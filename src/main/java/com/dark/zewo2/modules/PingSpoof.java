@@ -12,8 +12,7 @@ import meteordevelopment.orbit.EventHandler;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.c2s.play.KeepAliveC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayPongC2SPacket;
+import net.minecraft.network.packet.c2s.common.KeepAliveC2SPacket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +62,7 @@ public class PingSpoof extends Module {
         if (mode.get() == Mode.Delay) {
             return true; // if we want to delay everything, say yes
         } else {
-            return p instanceof PlayPongC2SPacket || p instanceof KeepAliveC2SPacket; // if we want to fake it, say yes if its a pong or keepalive
+            return p instanceof KeepAliveC2SPacket; // if we want to fake it, say yes if its a pong or keepalive
         }
     }
 

@@ -17,17 +17,17 @@ public abstract class PlayerListEntryMixin {
     @Shadow
     public abstract GameProfile getProfile();
 
-    @Inject(method = "getSkinTexture", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getSkinTextures", at = @At("HEAD"), cancellable = true)
     private void onGetTexture(CallbackInfoReturnable<Identifier> info) {
         if (Modules.get().get(Boykisser.class).isActive()) {
             info.setReturnValue(Boykisser.boykisser);
         }
     }
 
-    @Inject(method = "getModel", at = @At("HEAD"), cancellable = true)
-    private void getModel(CallbackInfoReturnable<String> info) {
-        if (Modules.get().get(Boykisser.class).isActive()) {
-            info.setReturnValue("slim");
-        }
-    }
+//    @Inject(method = "", at = @At("HEAD"), cancellable = true)
+//    private void getModel(CallbackInfoReturnable<String> info) {
+//        if (Modules.get().get(Boykisser.class).isActive()) {
+//            info.setReturnValue("slim");
+//        }
+//    }
 }

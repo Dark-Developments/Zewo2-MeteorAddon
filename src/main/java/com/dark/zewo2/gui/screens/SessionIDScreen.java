@@ -9,9 +9,10 @@ import meteordevelopment.meteorclient.systems.accounts.Account;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
-import net.minecraft.client.util.Session;
+import net.minecraft.client.session.Session;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public class SessionIDScreen extends WindowScreen {
     private final MultiplayerScreen multiplayerScreen;
@@ -44,13 +45,13 @@ public class SessionIDScreen extends WindowScreen {
         t.add(theme.button("Done")).minWidth(220).expandX().widget().action = () -> {
             if (ID.get().isEmpty() || UUID.get().isEmpty() || USER.get().isEmpty()) return;
 
-            Account.setSession(new Session(USER.get(), UUID.get(), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MSA));
+            Account.setSession(new Session(USER.get(), java.util.UUID.fromString(UUID.get()), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MSA));
 
             mc.setScreen(new MultiplayerScreen(this.parent));
         };
 
         t.add(theme.button("Return ACC")).minWidth(220).expandX().widget().action = () -> {
-            Account.setSession(new Session(Addon.BOOTNAME, Addon.BOOTUUID, Addon.BOOTSESSION, Optional.empty(), Optional.empty(), Session.AccountType.MOJANG));
+            Account.setSession(new Session(Addon.BOOTNAME, java.util.UUID.fromString(Addon.BOOTUUID), Addon.BOOTSESSION, Optional.empty(), Optional.empty(), Session.AccountType.MOJANG));
 
             mc.setScreen(new MultiplayerScreen(this.parent));
         };

@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractClientPlayerEntity.class)
 public class RenderCapes {
-    @Inject(method = "getCapeTexture", at = @At("HEAD"), cancellable = true)
-    private void onGetCapeTexture(CallbackInfoReturnable<Identifier> info) {
-        Identifier id = Capes.get((PlayerEntity) (Object) this);
-        if (id != null) info.setReturnValue(id);
-    }
+//    @Inject(method = "getCapeTexture", at = @At("HEAD"), cancellable = true)
+//    private void onGetCapeTexture(CallbackInfoReturnable<Identifier> info) {
+//        Identifier id = Capes.get((PlayerEntity) (Object) this);
+//        if (id != null) info.setReturnValue(id);
+//    }
 }
