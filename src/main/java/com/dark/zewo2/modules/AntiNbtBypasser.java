@@ -21,7 +21,7 @@ public class AntiNbtBypasser extends Module {
     @EventHandler
     private void onsent(PacketEvent.Send event){
         if (event.packet instanceof CreativeInventoryActionC2SPacket packet) {
-            ItemStack spoofed = packet.getItemStack();
+            ItemStack spoofed = packet.getStack();
             if (spoofed.getItem() == Items.AIR) {
                 return;
             }
