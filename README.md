@@ -20,7 +20,7 @@ This is a Meteor Addon and requires the use of [Meteor Client](https://meteorcli
 
 ## Installation
 1. Grab the latest JAR file from the [releases](https://github.com/Dark-Developments/Zewo2-Addon/releases) tab.
-2. Run 1.20.1 Vanilla
+2. Run 1.20.2 Vanilla
 3. Close out of the game and close your launcher completely. *The Store version likes to chill in the background. So kill it with Task Manager*
 4. Download the Fabric Installer from https://fabricmc.net
 5. Run the Fabric Installer and install Fabric for Minecraft 1.20.2
