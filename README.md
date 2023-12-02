@@ -21,9 +21,9 @@
 
 ## Installation:
 
-**- Install The .jar**
+**- Install the .jar**
 
-**- Download Fabric Loader From https://fabricmc.net**
+**- Download Fabric Loader from https://fabricmc.net**
 
 **- Run 1.20.1 Vanilla**
 
@@ -35,18 +35,17 @@
 
 **- Add the .jar to the mods folder and Run Minecraft 1.20.1 Fabric (With meteor client)**
 
-**Your Done Now The Client Should be working as expected! If Not Please Join this discord ( https://discord.gg/kja3YYV7R9 ) and we will be happy to help!**
+**Your done now the Client should be working as expected! If not please join this discord ( https://discord.gg/kja3YYV7R9 ) and we will be happy to help!**
 
 ## Setup
 
 ### Install Stable Version
-click [here](https://github.com/Dark-Developments/Zewo2-Addon/releases) for releases
+Click [here](https://github.com/Dark-Developments/Zewo2-Addon/releases) for releases
 
 ### Install Dev build
-Build the Jar from Source directly
+Build the JAR from source directly.
 
-**WARNING**: Dev builds a unstable.
+**WARNING**: Dev builds are unstable.
 
 ## Disclaimer
-
 For educational purposes only. Use at your own risk.
