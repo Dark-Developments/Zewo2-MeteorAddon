@@ -30,7 +30,7 @@ public class Bookchat extends Module {
         String msg = event.message;
         if (mc.player.getMainHandStack().getItem().equals(Items.WRITABLE_BOOK)){
             event.cancel();
-            info(mc.player.getEntityName() + " : " + msg);
+            info(mc.player.getGameProfile().getName() + " : " + msg);
             String encrypted = Base64.getEncoder().encodeToString(msg.getBytes());
             mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, Collections.singletonList(encrypted), Optional.empty()));
         }
@@ -52,7 +52,7 @@ public class Bookchat extends Module {
         if (person.get().isEmpty()) return;
         if(mc.world.getPlayers() == null) return;
         for (PlayerEntity p : mc.world.getPlayers()){
-            if (p.getEntityName().equalsIgnoreCase(person.get())){
+            if (p.getGameProfile().getName().equalsIgnoreCase(person.get())){
                 playerEntity = p;
             }
         }
@@ -73,7 +73,7 @@ public class Bookchat extends Module {
             if (Objects.equals(lasttext, text)) return;
 
             lasttext = text;
-            info(playerEntity.getEntityName() + " : " + decodedString);
+            info(playerEntity.getGameProfile().getName() + " : " + decodedString);
         }
     }
 }

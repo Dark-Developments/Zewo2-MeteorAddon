@@ -39,7 +39,7 @@ public class AutoL extends Module {
                     String text = messages.get().get(Utils.random(0, messages.get().size()));
 
                     //replace syntax
-                    text = text.replace("(target)", player.getEntityName());
+                    text = text.replace("(target)", player.getGameProfile().getName());
                     text = text.replace("(target.coords)", player.getBlockPos().toString());
 
                     ChatUtils.sendPlayerMsg(text);

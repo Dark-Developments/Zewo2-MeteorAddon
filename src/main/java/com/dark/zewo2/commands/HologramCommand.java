@@ -42,7 +42,7 @@ public class    HologramCommand extends Command {
             tag.putBoolean("Interpret", true);
             tag.putBoolean("NoGravity", true);
             tag.putBoolean("CustomNameVisible", true);
-            tag.putString("CustomName", Text.Serializer.toJson(Text.literal(message)));
+            tag.putString("CustomName", Text.Serialization.toJsonString(Text.literal(message)));
             stack.setSubNbt("EntityTag", tag);
             if (!mc.player.getAbilities().creativeMode) throw NOT_IN_CREATIVE.create();
             mc.interactionManager.clickCreativeStack(stack, 36 + mc.player.getInventory().selectedSlot);
@@ -62,7 +62,7 @@ public class    HologramCommand extends Command {
             tag.putBoolean("Interpret", true);
             tag.putBoolean("NoGravity", true);
             tag.putBoolean("CustomNameVisible", true);
-            tag.putString("CustomName", Text.Serializer.toJson(Text.literal(message)));
+            tag.putString("CustomName", Text.Serialization.toJsonString(Text.literal(message)));
             tag.put("Pos", nbtList);
             stack.setSubNbt("EntityTag", tag);
             if (!mc.player.getAbilities().creativeMode) throw NOT_IN_CREATIVE.create();
