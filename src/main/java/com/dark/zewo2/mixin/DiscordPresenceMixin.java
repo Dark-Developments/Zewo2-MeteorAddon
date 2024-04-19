@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-@Mixin(value = DiscordPresence.class, remap = false)
+@Mixin(value = DiscordPresence.class, remap = false, priority = 1002)
 public class DiscordPresenceMixin {
     @ModifyArg(method = "onActivate", at = @At(value = "INVOKE", target = "Lmeteordevelopment/discordipc/DiscordIPC;start(JLjava/lang/Runnable;)Z"))
     private long modifyAppId(long appId) {
