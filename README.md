@@ -30,9 +30,6 @@ This is a Meteor Addon and requires the use of [Meteor Client](https://meteorcli
 
 Your done now and the Client should be working as expected! If not please join the [Discord](https://discord.gg/kja3YYV7R9) and we will be happy to help!
 
-### Incompatibilities
-- NumbyHack (caused by Mixin Conflict in DiscordPRC)
-
 ## Setup
 
 ### Install Stable Version
