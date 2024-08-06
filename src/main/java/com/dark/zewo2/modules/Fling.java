@@ -54,24 +54,24 @@ public class Fling extends Module {
 
             int packetsRequired = (int) Math.ceil(Math.abs(distance / 10));
 
-            CompletableFuture.runAsync(() -> {
+            new Thread(() -> {
                 buildTpRange(packetsRequired);
 
                 Vec3d pos = mc.player.getPos();
-                moveTo(pos.add(0, distance,0));
+                moveTo(pos.add(0, distance, 0));
 
                 JinxUtils.sleep(250);
 
                 toggle(); // i cannot be bothered to find if meteor has an eventLess packet util.
-                mc.player.networkHandler.sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND,0,0,0));
+                mc.player.networkHandler.sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, 0, 0, 0));
                 toggle();
 
                 JinxUtils.sleep(250);
 
                 buildTpRange(packetsRequired); // "minecraft resets your movement charge like every tick"
                 mc.player.setVelocity(Vec3d.ZERO);
-                moveTo(pos.add(0, 0.01,0));
-            });
+                moveTo(pos.add(0, 0.01, 0));
+            }).start();
 
         }
     }
