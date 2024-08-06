@@ -4,18 +4,16 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "ChatMixin",
+    "GenericContainerScreenMixin",
+    "MixinMessageHandler",
     "MultiplayerScreenMixin",
-    "RenderCapes",
-    "SessionMixin",
-    "Interface.INClientPlayerInteractionManagerMixin",
     "PlayerListEntryMixin",
-    "GenericContainerScreenMixin"
+    "SessionMixin",
+    "Interface.INClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "mixins": [
-    "ClientNameMixin",
-    "DiscordPresenceMixin"
   ]
 }

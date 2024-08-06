@@ -35,7 +35,7 @@ import org.reflections.vfs.Vfs;
 import java.util.List;
 
 public class BetterAutoSign extends Module {
-    BlockPos last = new BlockPos(0,-500,0);
+    boolean listen;
 
     private final SettingGroup sgGeneral = this.settings.getDefaultGroup();
 
@@ -61,11 +61,18 @@ public class BetterAutoSign extends Module {
         super(Addon.CATEGORY, "Auto-Sign+", "Auto Sign");
     }
 
+    @Override
+    public void onActivate() {
+        listen = true;
+    }
+
     @EventHandler
     private void packet(PacketEvent.Receive event){
+        if (!listen) return;
+
         if (event.packet instanceof SignEditorOpenS2CPacket packet){
+            listen = false;
             event.cancel();
-            if (packet.getPos().equals(last)) return;
 
             BlockPos sign = new BlockPos(packet.getPos());
 
@@ -78,34 +85,17 @@ public class BetterAutoSign extends Module {
 
             if (mode.get().equals(sides.both)){
                 mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, true, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
-                mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), getop(mc.player.getHorizontalFacing()), sign, false), 0));
+                mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing().getOpposite(), sign, false), 0));
                 mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
             }
 
-            //this is to stop the packet spam loop when using 'both' mode
-            last = sign;
-            new Thread(() -> {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
-                last = null;
-            }).start();
+            listen = true;
         }
     }
 
     private String isempty(String text){
         if (text.isEmpty()) return "";
         else return text;
-    }
-
-    private Direction getop(Direction dir){
-        if (dir.equals(Direction.NORTH)) return Direction.SOUTH;
-        else if (dir.equals(Direction.EAST)) return Direction.WEST;
-        else if (dir.equals(Direction.SOUTH)) return Direction.NORTH;
-        else return Direction.EAST;
     }
 
     private boolean itemfilter(Item item) {

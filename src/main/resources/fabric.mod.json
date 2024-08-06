@@ -10,7 +10,7 @@
   "contact": {
     "repo": "https://github.com/Dark-Developments/Zewo2-Addon"
   },
-  "icon": "assets/template/icon.png",
+  "icon": "assets/zewo2/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [

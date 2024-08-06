@@ -38,7 +38,6 @@ public class JinxUtils {
         } catch (Exception ignored) {
         }
     }
-    public static final List<String> ANTICHEAT_LIST = Arrays.asList("grimac", "nocheatplus", "negativity", "warden", "horizon", "illegalstack", "coreprotect", "exploitsx", "vulcan", "abc", "spartan", "kauri", "anticheatreloaded", "witherac", "godseye", "matrix", "wraith");
     public static void sendSignedMessage(String message) {
         if (message.startsWith("/")) mc.player.sendMessage(Text.of(message.substring(1)));
         else mc.player.networkHandler.sendChatMessage(message);
@@ -69,16 +68,6 @@ public class JinxUtils {
         int y = 255;
         int z = new Random().nextInt(16777215);
         return new Vec3d(x, y, z);
-    }
-
-    public static ItemStack generateItemWithNbt(String nbt, Item item) {
-        try {
-            ItemStack stack = new ItemStack(item);
-            stack.setNbt(StringNbtReader.parse(nbt));
-            return stack;
-        } catch (Exception ignored) {
-            return new ItemStack(item);
-        }
     }
 
     public static Vec2f getPitchYawFromOtherEntity(Vec3d eyePos, Vec3d targetV3) {

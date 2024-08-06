@@ -17,6 +17,7 @@ import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.BlockPos;
 
@@ -54,8 +55,9 @@ public class Magnet extends Module {
     @EventHandler
     private void onTick(TickEvent.Pre event) {
         for (Entity entity : mc.world.getEntities()) {
-            if (Objects.equals(entity.getType().toString(), "entity.minecraft.item") && mc.player.distanceTo(entity) <= range.get()) {
-                if (mc.player == null || mc.world == null) return;
+            if (entity instanceof ItemEntity){
+                if (mc.player.distanceTo(entity) > range.get()) return;
+
                 if (!Utils.isABFree(mc.player.getPos(), entity.getPos())) return;
                 mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(entity.getX(), entity.getY(), entity.getZ(), true));
             }

@@ -2,6 +2,7 @@ package com.dark.zewo2.modules;
 
 import com.dark.zewo2.Addon;
 import com.dark.zewo2.Utils.JinxUtils;
+import com.dark.zewo2.Utils.Utils;
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.settings.DoubleSetting;
 import meteordevelopment.meteorclient.settings.Setting;
@@ -13,6 +14,8 @@ import net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.concurrent.CompletableFuture;
 
 public class Fling extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
@@ -39,34 +42,51 @@ public class Fling extends Module {
     }
 
     @EventHandler
-    private void onpacket(PacketEvent.Send event){
-        if (!not) return;
+    public void onPacket(PacketEvent.Send event){
         if (event.packet instanceof PlayerInteractItemC2SPacket) {
-            if (mc.player.getInventory().getMainHandStack().getItem() == Items.FISHING_ROD && (mc.player.fishHook != null)) {
-                if (mc.player.fishHook.isRemoved()) return;
+            if (mc.player.getMainHandStack().getItem() != Items.FISHING_ROD || mc.player.fishHook == null || mc.player.fishHook.getHookedEntity() == null) return;
+
+            if (mc.player.fishHook.isRemoved()) return;
+            event.cancel();
+
+            double eDistance2Player = mc.player.distanceTo(mc.player.fishHook.getHookedEntity());
+            double distance = (11 * updist.get()) - (eDistance2Player > 2 ? eDistance2Player : 0);
+
+            int packetsRequired = (int) Math.ceil(Math.abs(distance / 10));
+
+            CompletableFuture.runAsync(() -> {
+                buildTpRange(packetsRequired);
+
+                Vec3d pos = mc.player.getPos();
+                moveTo(pos.add(0, distance,0));
+
+                JinxUtils.sleep(250);
+
+                toggle(); // i cannot be bothered to find if meteor has an eventLess packet util.
+                mc.player.networkHandler.sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND,0,0,0));
+                toggle();
+
+                JinxUtils.sleep(250);
+
+                buildTpRange(packetsRequired); // "minecraft resets your movement charge like every tick"
                 mc.player.setVelocity(Vec3d.ZERO);
-                event.setCancelled(true);
-                new Thread(() -> {
-                    double staticy = mc.player.getY();
-                    for (int i = 0; i < updist.get(); i++) {
-                        staticy = staticy + 9;
-                        JinxUtils.sleep(5);
-                        mc.player.setVelocity(Vec3d.ZERO);
-                        mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), staticy, mc.player.getZ(), true));
-                    }
-                    JinxUtils.sleep(delay.get().longValue());
-                    not = false;
-                    mc.player.networkHandler.getConnection().send(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, 0));
-                    not = true;
-                    JinxUtils.sleep(delay.get().longValue());
-                    for (int i = 0; i < updist.get(); i++) {
-                        staticy = staticy - 9;
-                        JinxUtils.sleep(5);
-                        mc.player.setVelocity(Vec3d.ZERO);
-                        mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), staticy, mc.player.getZ(), true));
-                    }
-                }).start();
-            }
+                moveTo(pos.add(0, 0.01,0));
+            });
+
         }
+    }
+
+    private void buildTpRange(int amount){
+        Vec3d p = mc.player.getPos();
+
+        for (int i = 0; i < amount; i++){
+            mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(p.x, p.y, p.z, true));
+        }
+
+    }
+
+    private void moveTo(Vec3d p){
+        mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(p.x, p.y, p.z, true));
+        mc.player.setPosition(p);
     }
 }

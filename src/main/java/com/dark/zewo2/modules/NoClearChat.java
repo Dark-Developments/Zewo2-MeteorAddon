@@ -1,8 +1,3 @@
-/*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
- */
-
 package com.dark.zewo2.modules;
 
 import com.dark.zewo2.Addon;
@@ -19,13 +14,8 @@ public class NoClearChat extends Module {
     private void revieveMessage(ReceiveMessageEvent event){
         String message = event.getMessage().getString();
 
-        if (message.isEmpty()){
+        if (message.isEmpty() || (message.startsWith("§") && message.length() <= 2)){
             event.cancel();
         }
-    }
-
-    @Override
-    public void onActivate() {
-
     }
 }

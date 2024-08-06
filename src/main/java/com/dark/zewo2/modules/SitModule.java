@@ -53,7 +53,6 @@ public class SitModule extends Module {
     @EventHandler
     private void onPacketReceive(PacketEvent.Receive event)  {
         if (event.packet instanceof DeathMessageS2CPacket packet) {
-            Entity entity = mc.world.getEntityById(packet.getEntityId());
             target = null;
         }
     }

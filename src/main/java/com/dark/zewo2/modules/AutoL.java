@@ -34,16 +34,16 @@ public class AutoL extends Module {
     private void OnPacket(PacketEvent.Receive event) {
         if (event.packet instanceof EntityStatusS2CPacket packet) {
             if (packet.getEntity(mc.world) instanceof PlayerEntity player){
-                if (player.getHealth() <= 0){
-                    if (player.equals(mc.player)) return;
-                    String text = messages.get().get(Utils.random(0, messages.get().size()));
 
-                    //replace syntax
-                    text = text.replace("(target)", player.getGameProfile().getName());
-                    text = text.replace("(target.coords)", player.getBlockPos().toString());
+                if (player.getHealth() > 0) return;
+                if (player.equals(mc.player)) return;
 
-                    ChatUtils.sendPlayerMsg(text);
-                }
+                String text = messages.get().get(Utils.random(0, messages.get().size()));
+                //replace syntax
+                text = text.replace("(target)", player.getGameProfile().getName());
+                text = text.replace("(target.coords)", player.getBlockPos().toString());
+                ChatUtils.sendPlayerMsg(text);
+
             }
         }
     }

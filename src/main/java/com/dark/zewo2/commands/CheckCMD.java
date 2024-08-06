@@ -22,9 +22,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableTextContent;
 
 public class CheckCMD extends Command {
-    // crappy hack to make it compile
-    private final MinecraftClient mc = MinecraftClient.getInstance();
-
     private static final SimpleCommandExceptionType ALWAYS_CHECKING = new SimpleCommandExceptionType(Text.of("Already executing Command Check!"));
 
     private int checking = 0;

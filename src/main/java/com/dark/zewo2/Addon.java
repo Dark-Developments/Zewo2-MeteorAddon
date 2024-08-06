@@ -43,7 +43,6 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Magnet());
         Modules.get().add(new NoSwing());
         Modules.get().add(new chatfilterbypass());
-        Modules.get().add(new Airstrike());
         Modules.get().add(new Groupmessage());
         Modules.get().add(new RainbowArmor());
         Modules.get().add(new PenisESP());
@@ -52,32 +51,21 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new AutoHorn());
         Modules.get().add(new AntiSpawnpoint());
         Modules.get().add(new phase());
-        Modules.get().add(new Bookchat());
         Modules.get().add(new StrongholdFinder());
         Modules.get().add(new Fling());
         Modules.get().add(new PermJukebox());
-        Modules.get().add(new AntiNbtBypasser());
-        Modules.get().add(new SignGriefer());
         Modules.get().add(new Boykisser());
         Modules.get().add(new PingSpoof());
         Modules.get().add(new ForceField());
         Modules.get().add(new SitModule());
-        Modules.get().add(new AutoWordReact());
         Modules.get().add(new StorageVoider());
 
         // Commands
         Commands.add(new CheckCMD());
         Commands.add(new ClearInventoryCommand());
-        Commands.add(new CrashItemCommand());
-        Commands.add(new CreativeBanCommand());
-        Commands.add(new CreativeKickAllCommand());
         Commands.add(new DesyncCommand());
         Commands.add(new DisableVehicleGrav());
-        Commands.add(new HologramCommand());
-        Commands.add(new ImageBookCommand());
-        Commands.add(new ImageLoreCommand());
         Commands.add(new TrashCommand());
-        Commands.add(new ReloadCapes());
         Commands.add(new SpamCommand());
         Commands.add(new CrackedOpSpamCommand());
         Commands.add(new MinefortJoin());

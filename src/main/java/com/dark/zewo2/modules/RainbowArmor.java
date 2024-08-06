@@ -7,6 +7,8 @@ import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -112,10 +114,12 @@ public class RainbowArmor extends Module {
         ItemStack boots = new ItemStack(Items.LEATHER_BOOTS);
         NbtCompound tag = new NbtCompound();
         tag.put("color", NbtDouble.of(textColor));
-        helmet.setSubNbt("display", tag);
-        chestplate.setSubNbt("display", tag);
-        leggings.setSubNbt("display", tag);
-        boots.setSubNbt("display", tag);
+
+        helmet.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
+        chestplate.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
+        leggings.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
+        boots.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
+
         if (!excludeHelmet.get()) mc.interactionManager.clickCreativeStack(helmet, 5);
         if (!excludeChestplate.get()) mc.interactionManager.clickCreativeStack(chestplate, 6);
         if (!excludeLeggings.get()) mc.interactionManager.clickCreativeStack(leggings, 7);

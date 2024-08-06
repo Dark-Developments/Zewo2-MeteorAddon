@@ -59,16 +59,6 @@ public class Utils {
         return raycast.getType() == HitResult.Type.MISS;
     }
 
-    public static ItemStack generateItemStackWithMeta(String nbt, Item item) {
-        try {
-            ItemStack stack = new ItemStack(item);
-            stack.setNbt(StringNbtReader.parse(nbt));
-            return stack;
-        } catch (Exception ignored) {
-            return new ItemStack(item);
-        }
-    }
-
     public static Vec3d getRotationVector(float pitch, float yaw) {
         float f = pitch * 0.017453292F;
         float g = -yaw * 0.017453292F;

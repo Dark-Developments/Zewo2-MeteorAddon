@@ -19,5 +19,5 @@ public class Boykisser extends Module {
         super(Addon.CATEGORY, "Boykisser", "Makes everyone a boykisser :3");
     }
 
-    public static final Identifier boykisser = new Identifier("zewo2","boykisserskin.png");
+    public static final Identifier boykisser = Identifier.of("zewo2","boykisserskin.png");
 }
