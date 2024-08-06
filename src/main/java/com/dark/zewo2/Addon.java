@@ -59,6 +59,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new ForceField());
         Modules.get().add(new SitModule());
         Modules.get().add(new StorageVoider());
+        Modules.get().add(new Girlboss());
 
         // Commands
         Commands.add(new CheckCMD());
