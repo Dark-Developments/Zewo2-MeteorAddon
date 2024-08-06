@@ -21,6 +21,7 @@ import net.minecraft.client.gui.screen.ingame.SignEditScreen;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.GoatHornItem;
 import net.minecraft.item.Item;
+import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.network.packet.c2s.play.CloseHandledScreenC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
@@ -69,10 +70,12 @@ public class BetterAutoSign extends Module {
     @EventHandler
     private void packet(PacketEvent.Receive event){
         if (!listen) return;
-
         if (event.packet instanceof SignEditorOpenS2CPacket packet){
-            listen = false;
             event.cancel();
+
+            listen = false;
+            boolean sneaking = mc.player.isSneaking();
+            if (sneaking) mc.player.networkHandler.sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.RELEASE_SHIFT_KEY));
 
             BlockPos sign = new BlockPos(packet.getPos());
 
@@ -88,6 +91,8 @@ public class BetterAutoSign extends Module {
                 mc.player.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND ,new BlockHitResult(new Vec3d(sign.getX(), sign.getY(), sign.getZ()), mc.player.getHorizontalFacing().getOpposite(), sign, false), 0));
                 mc.player.networkHandler.sendPacket(new UpdateSignC2SPacket(sign, false, isempty(line1.get()), isempty(line2.get()), isempty(line3.get()), isempty(line4.get())));
             }
+
+            if (sneaking) mc.player.networkHandler.sendPacket(new ClientCommandC2SPacket(mc.player, ClientCommandC2SPacket.Mode.PRESS_SHIFT_KEY));
 
             listen = true;
         }
