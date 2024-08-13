@@ -20,13 +20,13 @@ This is a Meteor Addon and requires the use of [Meteor Client](https://meteorcli
 
 ## Installation
 1. Grab the latest JAR file from the [releases](https://github.com/Dark-Developments/Zewo2-Addon/releases) tab.
-2. Run 1.20.4 Vanilla
+2. Run 1.21 Vanilla
 3. Close out of the game and close your launcher completely. *The Store version likes to chill in the background. So kill it with Task Manager*
 4. Download the Fabric Installer from https://fabricmc.net
-5. Run the Fabric Installer and install Fabric for Minecraft 1.20.4
+5. Run the Fabric Installer and install Fabric for Minecraft 1.21
 7. Open your .minecraft folder. This process varies per Operation System.
 8. When you've got your .minecraft folder open, navigate to the folder called mods
-9. Drag the .jar file into the folder and run Minecraft 1.20.4 Fabric (with Meteor Client)
+9. Drag the .jar file into the folder and run Minecraft 1.21 Fabric (with Meteor Client)
 
 Your done now and the Client should be working as expected! If not please join the [Discord](https://discord.gg/kja3YYV7R9) and we will be happy to help!
 
