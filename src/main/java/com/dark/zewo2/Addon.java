@@ -60,6 +60,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new SitModule());
         Modules.get().add(new StorageVoider());
         Modules.get().add(new Girlboss());
+        Modules.get().add(new TotemNotifier());
 
         // Commands
         Commands.add(new CheckCMD());
@@ -70,6 +71,7 @@ public class Addon extends MeteorAddon {
         Commands.add(new SpamCommand());
         Commands.add(new CrackedOpSpamCommand());
         Commands.add(new MinefortJoin());
+        Commands.add(new DupeCommand());
 
         // HUD
 //        Hud.get().register(HudExample.INFO);
