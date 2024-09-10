@@ -18,9 +18,8 @@ public class DupeCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(context -> {
-            ArrayList<String> pages = new ArrayList<>();
 
-            mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, pages, Optional.of("discord.gg/kja3YYV7R9 join now :3")));
+            mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, new ArrayList<>(), Optional.of("discord.gg/kja3YYV7R9 join now :3")));
             return 1;
         });
     }
