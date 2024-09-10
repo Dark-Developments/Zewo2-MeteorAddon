@@ -24,7 +24,6 @@ public class TrashCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(context -> {
-            assert mc.interactionManager != null && mc.player != null;   // impossible, but still
             mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, 36 + mc.player.getInventory().selectedSlot, 50, SlotActionType.SWAP, mc.player);
 
             return SINGLE_SUCCESS;
