@@ -58,7 +58,7 @@ public class TotemNotifier extends Module {
         int pops = popMap.getOrDefault(player.getUuid(), 0);
         popMap.put(player.getUuid(), ++pops);
 
-        String message = "%s has popped their %s totem".formatted(player.getGameProfile().getName(), pops);
+        String message = "%s has popped %s totem(s)".formatted(player.getGameProfile().getName(), pops);
 
         if (announce.get()) ChatUtils.sendPlayerMsg(message);
         else ChatUtils.info(message);
