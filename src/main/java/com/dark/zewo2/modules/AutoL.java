@@ -12,6 +12,7 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.s2c.play.EntityStatusS2CPacket;
 
@@ -33,9 +34,10 @@ public class AutoL extends Module {
     @EventHandler
     private void OnPacket(PacketEvent.Receive event) {
         if (event.packet instanceof EntityStatusS2CPacket packet) {
-            if (packet.getEntity(mc.world) instanceof PlayerEntity player){
+            if (packet.getStatus() != 3) return;
 
-                if (player.getHealth() > 0) return;
+            Entity entity = packet.getEntity(mc.world);
+            if (entity instanceof PlayerEntity player){
                 if (player.equals(mc.player)) return;
 
                 String text = messages.get().get(Utils.random(0, messages.get().size()));
