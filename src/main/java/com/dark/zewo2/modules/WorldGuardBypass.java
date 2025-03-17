@@ -3,7 +3,6 @@ package com.dark.zewo2.modules;
 import com.dark.zewo2.Addon;
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
-import meteordevelopment.meteorclient.mixin.PlayerPositionLookS2CPacketAccessor;
 import meteordevelopment.meteorclient.settings.DoubleSetting;
 import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
@@ -55,17 +54,9 @@ public class WorldGuardBypass extends Module {
         }
 
             mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(
-                mc.player.getX() + moveVec.x, mc.player.getY() + moveVec.y, mc.player.getZ() + moveVec.z, false));
+                mc.player.getX() + moveVec.x, mc.player.getY() + moveVec.y, mc.player.getZ() + moveVec.z, false, false));
 
             mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(
-                mc.player.getX() + moveVec.x, mc.player.getY() - 100, mc.player.getZ() + moveVec.z, true));
-    }
-
-    @EventHandler
-    private void onReceivePacket(PacketEvent.Receive event) {
-        if (event.packet instanceof PlayerPositionLookS2CPacket) {
-            ((PlayerPositionLookS2CPacketAccessor) event.packet).setPitch(mc.player.getPitch());
-            ((PlayerPositionLookS2CPacketAccessor) event.packet).setYaw(mc.player.getYaw());
-        }
+                mc.player.getX() + moveVec.x, mc.player.getY() - 100, mc.player.getZ() + moveVec.z, true, false));
     }
 }

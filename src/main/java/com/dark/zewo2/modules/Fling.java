@@ -76,13 +76,13 @@ public class Fling extends Module {
         Vec3d p = currentPos;
 
         for (int i = 0; i < amount; i++){
-            mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(p.x, p.y, p.z, true));
+            mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(p.x, p.y, p.z, true, false));
         }
 
     }
 
     private void moveTo(Vec3d p){
-        mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(p.x, p.y, p.z, true));
+        mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(p.x, p.y, p.z, true, false));
         mc.player.setPosition(p);
     }
 }

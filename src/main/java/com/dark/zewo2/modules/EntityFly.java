@@ -60,11 +60,6 @@ public class EntityFly extends Module {
     public KeyBinding down = new KeyBinding("", GLFW.GLFW_KEY_LEFT_ALT, "");
 
     @EventHandler
-    private void onboatmove(BoatMoveEvent event){
-        event.boat.setPaddleMovings(false,false);
-    }
-
-    @EventHandler
     private void onEntityMove(TickEvent.Pre event) {
         if (!mc.player.hasVehicle()) return;
 
@@ -83,7 +78,7 @@ public class EntityFly extends Module {
         if (down.isPressed()) velY -= verticalSpeed.get() / 20;
 
         // Apply velocity
-        ((IVec3d) vehicle.getVelocity()).set(velX, velY, velZ);
+        ((IVec3d) vehicle.getVelocity()).meteor$set(velX, velY, velZ);
     }
 
     @EventHandler
@@ -104,7 +99,7 @@ public class EntityFly extends Module {
         if (down.isPressed()) velY -= verticalSpeed.get() / 20;
 
         // Apply velocity
-        ((IVec3d) event.boat.getVelocity()).set(velX, velY, velZ);
+        ((IVec3d) event.boat.getVelocity()).meteor$set(velX, velY, velZ);
     }
 
     @Override

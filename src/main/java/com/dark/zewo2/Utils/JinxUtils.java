@@ -39,7 +39,7 @@ public class JinxUtils {
         }
     }
     public static void sendSignedMessage(String message) {
-        if (message.startsWith("/")) mc.player.sendMessage(Text.of(message.substring(1)));
+        if (message.startsWith("/")) mc.player.sendMessage(Text.of(message.substring(1)), false);
         else mc.player.networkHandler.sendChatMessage(message);
     }
 

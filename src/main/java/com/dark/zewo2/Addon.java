@@ -61,6 +61,7 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new StorageVoider());
         Modules.get().add(new Girlboss());
         Modules.get().add(new TotemNotifier());
+        Modules.get().add(new MaceInstaKill());
 
         // Commands
         Commands.add(new CheckCMD());

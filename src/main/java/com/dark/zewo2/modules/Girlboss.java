@@ -57,7 +57,7 @@ public class Girlboss extends Module {
             alertsSent.clear();
         }
         if (alertsSent.add(message) && hasSentFirstAlert) {
-            MinecraftClient.getInstance().player.sendMessage(Text.literal(message));
+            MinecraftClient.getInstance().player.sendMessage(Text.literal(message), false);
         }
         hasSentFirstAlert = true;
     }

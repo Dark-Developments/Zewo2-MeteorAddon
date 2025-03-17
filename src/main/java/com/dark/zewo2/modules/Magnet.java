@@ -59,7 +59,7 @@ public class Magnet extends Module {
                 if (mc.player.distanceTo(entity) > range.get()) return;
 
                 if (!Utils.isABFree(mc.player.getPos(), entity.getPos())) return;
-                mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(entity.getX(), entity.getY(), entity.getZ(), true));
+                mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(entity.getX(), entity.getY(), entity.getZ(), true, false));
             }
         }
     }

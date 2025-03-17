@@ -23,6 +23,7 @@
   "custom": {
     "meteor-client:color": "99,99,99"
   },
+  "accessWidener": "zewo2.accesswidener",
   "depends": {
     "java": ">=17",
     "minecraft": ">=${mc_version}",
