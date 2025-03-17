@@ -25,8 +25,8 @@ public class Magnet extends Module {
     private final Setting<Double> range = sgGeneral.add(new DoubleSetting.Builder()
         .name("range")
         .description("Range, in which items will be sucked.")
-        .defaultValue(3.5)
-        .range(1, 128)
+        .defaultValue(6)
+        .range(1, 10)
         .sliderRange(1, 10)
         .build()
     );
