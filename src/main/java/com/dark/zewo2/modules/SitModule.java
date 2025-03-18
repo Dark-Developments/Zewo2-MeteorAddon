@@ -32,7 +32,7 @@ public class SitModule extends Module {
             mc.player.setVelocity(0,0,0);
 
             if (kickdelay <= 0) {
-                mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), mc.player.getHeight() - 0.04, mc.player.getZ(), mc.player.isOnGround(), false));
+                mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), mc.player.getY() + target.getHeight(), mc.player.getZ(), mc.player.isOnGround(), false));
                 kickdelay = 25;
             } else {
                 kickdelay--;
