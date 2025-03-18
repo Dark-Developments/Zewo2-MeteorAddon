@@ -1,27 +1,22 @@
 package com.dark.zewo2.gui.screens;
 
 import com.dark.zewo2.Addon;
-import meteordevelopment.meteorclient.gui.GuiTheme;
+import meteordevelopment.meteorclient.gui.GuiThemes;
 import meteordevelopment.meteorclient.gui.WindowScreen;
 import meteordevelopment.meteorclient.gui.widgets.containers.WTable;
 import meteordevelopment.meteorclient.gui.widgets.input.WTextBox;
 import meteordevelopment.meteorclient.systems.accounts.Account;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.session.Session;
 
 import java.util.Optional;
-import java.util.UUID;
+
+import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class SessionIDScreen extends WindowScreen {
-    private final MultiplayerScreen multiplayerScreen;
-    MinecraftClient mc = MinecraftClient.getInstance();
 
-    public SessionIDScreen(GuiTheme theme, MultiplayerScreen multiplayerScreen, Screen parent) {
-        super(theme, "Session ID login");
-        this.multiplayerScreen = multiplayerScreen;
-        this.parent = parent;
+    public SessionIDScreen() {
+        super(GuiThemes.get(), "Session ID login");
     }
 
     @Override

@@ -1,23 +1,19 @@
 package com.dark.zewo2.gui.screens;
 
 import com.dark.zewo2.Addon;
-import meteordevelopment.meteorclient.gui.GuiTheme;
+import meteordevelopment.meteorclient.gui.GuiThemes;
 import meteordevelopment.meteorclient.gui.WindowScreen;
 import meteordevelopment.meteorclient.gui.widgets.containers.WContainer;
 import meteordevelopment.meteorclient.gui.widgets.containers.WHorizontalList;
 import meteordevelopment.meteorclient.gui.widgets.pressable.WButton;
 import meteordevelopment.meteorclient.systems.accounts.Accounts;
 import meteordevelopment.meteorclient.utils.misc.NbtUtils;
-import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class accounts extends WindowScreen {
-    private final MultiplayerScreen multiplayerScreen;
-    public accounts(GuiTheme theme, MultiplayerScreen multiplayerScreen) {
-        super(theme, Addon.CATEGORY.toString());
-        this.parent = multiplayerScreen;
-        this.multiplayerScreen = multiplayerScreen;
+    public accounts() {
+        super(GuiThemes.get(), Addon.CATEGORY.toString());
     }
 
     @Override
@@ -25,7 +21,7 @@ public class accounts extends WindowScreen {
         // Add account
         WHorizontalList l = add(theme.horizontalList()).expandX().widget();
 
-        addButton(l, "SessionLogin", () -> mc.setScreen(new SessionIDScreen(theme, multiplayerScreen, this)));
+        addButton(l, "SessionLogin", () -> mc.setScreen(new SessionIDScreen()));
     }
 
     private void addButton(WContainer c, String text, Runnable action) {
