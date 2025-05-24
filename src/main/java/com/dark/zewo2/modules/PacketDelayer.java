@@ -44,7 +44,12 @@ public class PacketDelayer extends Module {
     private final Setting<Keybind> releaseC2S = sgGeneral.add(new KeybindSetting.Builder()
         .name("releaseC2S")
         .description("Release C2S packets.")
-        .action(this::dumpC2SPackets)
+        .action(() -> {
+            if (mode.get() != Mode.Keybind) return;
+            IgnoreOutgoing = true;
+            dumpC2SPackets();
+            IgnoreOutgoing = false;
+        })
             .visible(() -> mode.get() == Mode.Keybind)
         .defaultValue(Keybind.none())
         .build()
@@ -54,7 +59,10 @@ public class PacketDelayer extends Module {
     private final Setting<Keybind> releaseS2C = sgGeneral.add(new KeybindSetting.Builder()
         .name("releaseS2C")
         .description("Release S2C packets.")
-        .action(this::dumpS2CPackets)
+        .action(() -> {
+            if (mode.get() != Mode.Keybind) return;
+            dumpS2CPackets();
+        })
         .visible(() -> mode.get() == Mode.Keybind)
         .defaultValue(Keybind.none())
         .build()
