@@ -20,10 +20,10 @@ public class AutoHorn extends Module {
         if (event.entity instanceof PlayerEntity){
             FindItemResult hashorn = InvUtils.findInHotbar(itemStack -> itemStack.getItem() instanceof GoatHornItem);
             if (!hashorn.found()) return;
-            int prevslot = mc.player.getInventory().selectedSlot;
-            mc.player.getInventory().selectedSlot = hashorn.slot();
+            int prevslot = mc.player.getInventory().getSelectedSlot();
+            mc.player.getInventory().setSelectedSlot(hashorn.slot());
             mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
-            mc.player.getInventory().selectedSlot = prevslot;
+            mc.player.getInventory().setSelectedSlot(prevslot);
         }
     }
 }

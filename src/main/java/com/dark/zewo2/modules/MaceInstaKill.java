@@ -80,7 +80,7 @@ public class MaceInstaKill extends Module {
 
     public void doAttack(LivingEntity entity, double height, boolean silent, boolean autoHeight, boolean preDmg){
         CompletableFuture.runAsync(() -> {
-            int realSlot = mc.player.getInventory().selectedSlot;
+            int realSlot = mc.player.getInventory().getSelectedSlot();
 
             if (silent) {
                 int glowstone = InvUtils.findItemInHotbar(Items.MACE);

@@ -103,9 +103,9 @@ public class PenisESP extends Module {
     }
 
     public Vec3d getBase(Entity entity, double partial) {
-        double x = entity.prevX + ((entity.getX() - entity.prevX) * partial);
-        double y = entity.prevY + ((entity.getY() - entity.prevY) * partial);
-        double z = entity.prevZ + ((entity.getZ() - entity.prevZ) * partial);
+        double x = entity.lastX + ((entity.getX() - entity.lastX) * partial);
+        double y = entity.lastY + ((entity.getY() - entity.lastY) * partial);
+        double z = entity.lastZ + ((entity.getZ() - entity.lastZ) * partial);
 
         return new Vec3d(x, y, z);
     }

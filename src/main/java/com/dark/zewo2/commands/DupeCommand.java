@@ -4,10 +4,8 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import meteordevelopment.meteorclient.commands.Command;
 import net.minecraft.command.CommandSource;
 import net.minecraft.network.packet.c2s.play.BookUpdateC2SPacket;
-import net.minecraft.screen.slot.SlotActionType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
 public class DupeCommand extends Command {
@@ -19,7 +17,7 @@ public class DupeCommand extends Command {
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(context -> {
 
-            mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().selectedSlot, new ArrayList<>(), Optional.of("discord.gg/kja3YYV7R9 join now :3")));
+            mc.player.networkHandler.sendPacket(new BookUpdateC2SPacket(mc.player.getInventory().getSelectedSlot(), new ArrayList<>(), Optional.of("discord.gg/kja3YYV7R9 join now :3")));
             return 1;
         });
     }

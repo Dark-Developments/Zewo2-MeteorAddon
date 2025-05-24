@@ -115,10 +115,10 @@ public class RainbowArmor extends Module {
         NbtCompound tag = new NbtCompound();
         tag.put("color", NbtDouble.of(textColor));
 
-        helmet.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
-        chestplate.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
-        leggings.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
-        boots.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor, true));
+        helmet.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor));
+        chestplate.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor));
+        leggings.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor));
+        boots.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(textColor));
 
         if (!excludeHelmet.get()) mc.interactionManager.clickCreativeStack(helmet, 5);
         if (!excludeChestplate.get()) mc.interactionManager.clickCreativeStack(chestplate, 6);

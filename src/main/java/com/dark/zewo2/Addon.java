@@ -2,7 +2,6 @@ package com.dark.zewo2;
 
 import com.dark.zewo2.commands.*;
 import com.dark.zewo2.modules.*;
-import com.dark.zewo2.modules.Boykisser;
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.commands.Commands;
@@ -62,13 +61,13 @@ public class Addon extends MeteorAddon {
         Modules.get().add(new Girlboss());
         Modules.get().add(new TotemNotifier());
         Modules.get().add(new MaceInstaKill());
+        Modules.get().add(new PacketDelayer());
 
         // Commands
         Commands.add(new CheckCMD());
         Commands.add(new ClearInventoryCommand());
         Commands.add(new DesyncCommand());
         Commands.add(new DisableVehicleGrav());
-        Commands.add(new TrashCommand());
         Commands.add(new SpamCommand());
         Commands.add(new CrackedOpSpamCommand());
         Commands.add(new MinefortJoin());
