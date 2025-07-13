@@ -39,11 +39,13 @@ public class SessionIDScreen extends WindowScreen {
         // Add
         t.add(theme.button("Done")).minWidth(220).expandX().widget().action = () -> {
             if (ID.get().isEmpty() || USER.get().isEmpty()) return;
-            if (UUID.get().isEmpty()){
+            if (ID.get().contains(":")){
                 ID.set(ID.get().replaceAll("token:", ""));
                 String tokenPart = ID.get().split(":")[0];
                 String uuidPart = ID.get().split(":")[1];
                 setSession(USER.get(), uuidPart, tokenPart);
+            } else if (UUID.get().isEmpty()) {
+                t.add(theme.label("Supply a UUID"));
             } else {
                 setSession(USER.get(), UUID.get(), ID.get());
             }
