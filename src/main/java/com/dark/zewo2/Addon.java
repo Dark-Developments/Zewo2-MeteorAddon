@@ -9,6 +9,7 @@ import meteordevelopment.meteorclient.systems.hud.HudGroup;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.session.Session;
 import org.slf4j.Logger;
 
 public class Addon extends MeteorAddon {
@@ -77,10 +78,10 @@ public class Addon extends MeteorAddon {
 //        Hud.get().register(HudExample.INFO);
 
         //for the sessionID login screen, so you can return to the account you started with
-        String accessed = MinecraftClient.getInstance().getSession().getSessionId().replaceAll("token:", "");
-        BOOTSESSION = accessed.split(":")[0];
-        BOOTUUID = accessed.split(":")[1];
-        BOOTNAME = MinecraftClient.getInstance().getSession().getUsername();
+        Session bootsession = MinecraftClient.getInstance().getSession();
+        BOOTSESSION = bootsession.getAccessToken();
+        BOOTUUID = bootsession.getUuidOrNull().toString();
+        BOOTNAME = bootsession.getUsername();
     }
 
     @Override
