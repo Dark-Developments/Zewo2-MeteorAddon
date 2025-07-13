@@ -35,7 +35,7 @@ public class Groupmessage extends Module {
     private void onmessage(SendMessageEvent event){
         event.cancel();
         for (String p : players.get()){
-            mc.player.networkHandler.sendCommand(command + " " + p + " " + event.message);
+            mc.player.networkHandler.sendChatCommand(command + " " + p + " " + event.message);
         }
     }
 }
