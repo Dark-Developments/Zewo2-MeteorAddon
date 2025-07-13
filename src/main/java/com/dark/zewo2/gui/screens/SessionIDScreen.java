@@ -46,8 +46,6 @@ public class SessionIDScreen extends WindowScreen {
                 setSession(USER.get(), uuidPart, tokenPart);
             } else {
                 setSession(USER.get(), UUID.get(), ID.get());
-                Account.setSession(new Session(USER.get(), java.util.UUID.fromString(UUID.get()), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MSA));
-
             }
 
             mc.setScreen(new MultiplayerScreen(this.parent));
