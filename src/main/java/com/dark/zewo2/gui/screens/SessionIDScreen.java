@@ -38,17 +38,32 @@ public class SessionIDScreen extends WindowScreen {
 
         // Add
         t.add(theme.button("Done")).minWidth(220).expandX().widget().action = () -> {
-            if (ID.get().isEmpty() || UUID.get().isEmpty() || USER.get().isEmpty()) return;
+            if (ID.get().isEmpty() || USER.get().isEmpty()) return;
+            if (UUID.get().isEmpty()){
+                ID.set(ID.get().replaceAll("token:", ""));
+                String tokenPart = ID.get().split(":")[0];
+                String uuidPart = ID.get().split(":")[1];
+                setSession(USER.get(), uuidPart, tokenPart);
+            } else {
+                setSession(USER.get(), UUID.get(), ID.get());
+                Account.setSession(new Session(USER.get(), java.util.UUID.fromString(UUID.get()), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MSA));
 
-            Account.setSession(new Session(USER.get(), java.util.UUID.fromString(UUID.get()), ID.get(), Optional.empty(), Optional.empty(), Session.AccountType.MSA));
+            }
 
             mc.setScreen(new MultiplayerScreen(this.parent));
         };
 
         t.add(theme.button("Return ACC")).minWidth(220).expandX().widget().action = () -> {
-            Account.setSession(new Session(Addon.BOOTNAME, java.util.UUID.fromString(Addon.BOOTUUID), Addon.BOOTSESSION, Optional.empty(), Optional.empty(), Session.AccountType.MOJANG));
-
+            setSession(Addon.BOOTNAME, Addon.BOOTUUID, Addon.BOOTSESSION);
             mc.setScreen(new MultiplayerScreen(this.parent));
         };
+    }
+
+    public void setSession(String name, String uuid, String token){
+        try {
+            Account.setSession(new Session(name, java.util.UUID.fromString(uuid), token, Optional.empty(), Optional.empty(), Session.AccountType.MSA));
+        } catch (Exception e){
+            // so we dont crash
+        }
     }
 }
